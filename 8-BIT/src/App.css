@@ -3,3 +3,47 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.start__text span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-52%, -65%);
+  font-size: 20px;
+  font-size: 2rem;
+  background: linear-gradient(to right, #ffffff, #ababab);
+  opacity: 50%;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.start__button {
+  border: 0.01rem white solid;
+  font-family: Pixel;
+  padding: 1.5rem 3rem;
+  text-align: center;
+}
+
+.start__button p {
+  color: white;
+  font-size: 0.6rem;
+}
+
+.start__button button {
+  font-size: 2rem;
+  font-family: Pixel;
+  width: auto;
+  border: none;
+  background: linear-gradient(to right, #0022ff, #9900ff);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(-1px 1px 0px white);
+}
