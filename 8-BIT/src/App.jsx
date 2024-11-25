@@ -18,9 +18,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route index path="/" element={<Start />} />
-          <Route path="/start" element={<Start />} />
-          <Route path="/welcome" element={<Welcome />} />
+          <Route index path="/" element={<Start/>} />
+          <Route path="/welcome" element={<Welcome/>} />
+          <Route path="/" element="" />
           <Route path="/" element="" />
           <Route path="/" element="" />
         </Routes>
