@@ -2,6 +2,8 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Start from "./pages/Start";
 import Welcome from "./pages/Welcome"
+import Redirecting  from "./pages/Redirecting"
+import More from "./pages/More"
 
 function App() {
   const getTime = () => {
@@ -20,8 +22,8 @@ function App() {
         <Routes>
           <Route index path="/" element={<Start/>} />
           <Route path="/welcome" element={<Welcome/>} />
-          <Route path="/" element="" />
-          <Route path="/" element="" />
+          <Route path="/loading" element={<Redirecting />} />
+          <Route path="/morecredits" element={<More />} />
           <Route path="/" element="" />
         </Routes>
       </BrowserRouter>

@@ -1,146 +1,174 @@
 // STARTPAGE
 .start__text {
-	span {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-52%, -65%);
-		font-size: 20px;
-		font-size: 2rem;
-		background: linear-gradient(to right, #ffffff, #ababab);
-		opacity: 50%;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -65%);
+    font-size: 20px;
+    font-size: 2rem;
+    background: linear-gradient(to right, #ffffff, #ababab);
+    opacity: 50%;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
 }
 
 .start__button {
-	border: 0.01rem white solid;
-	font-family: Pixel;
-	padding: 1.5rem 3rem;
-	text-align: center;
+  border: 0.01rem white solid;
+  font-family: Pixel;
+  padding: 1.5rem 3rem;
+  text-align: center;
 
-	p {
-		font-size: 0.6rem;
-	}
+  p {
+    font-size: 0.6rem;
+  }
 
-	button {
-		font-size: 2rem;
-		font-family: Pixel;
-		width: auto;
-		border: none;
-		background: linear-gradient(to right, #0022ff, #9900ff);
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		filter: drop-shadow(-1px 1px 0px white);
-	}
+  button {
+    font-size: 2rem;
+    font-family: Pixel;
+    width: auto;
+    border: none;
+    background: linear-gradient(to right, #0022ff, #9900ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(-1px 1px 0px white);
+  }
 }
 
 // WELCOMEPAGE
 .welcome__Container {
-	.welcome__Message {
-		display: flex;
-		flex-direction: column;
-		font-family: Pixel;
-		background: linear-gradient(to right, #0022ff, #9900ff);
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin-bottom: 6vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 
-		div {
-			display: flex;
-			flex-direction: row;
-		}
+  .welcome__Message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Pixel;
+    background: linear-gradient(to right, #0022ff, #9900ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6vh;
 
-		h1 {
-			font-size: 3.2rem
-		}
+    div {
+      display: flex;
+      flex-direction: row;
+    }
 
-		h2 {
-			font-size: 2rem;
-			line-height: 2rem;
-			margin-right: 1rem;
-		}
+    h1 {
+      font-size: 3.2rem;
+    }
 
-		h3 {
-			font-size: 4.5rem;
-			line-height: 4rem;
-			background: linear-gradient(to right, #0022ff, #9900ff);
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
-			filter: drop-shadow(-1px 1px 0px white);
-		}
+    h2 {
+      font-size: 2rem;
+      line-height: 2rem;
+      margin-right: 1rem;
+    }
 
-		.home {
-			span {
-				position: absolute;
-				top: 45%;
-				left: 50%;
-				font-size: 3.27rem;
-				transform: translate(-63%, -99%);
-				background: linear-gradient(to right, #ffffff, #ababab);
-				opacity: 80%;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
-			}
-		}
+    h3 {
+      font-size: 4.5rem;
+      line-height: 4.3rem;
+      background: linear-gradient(to right, #0022ff, #9900ff);
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(-1px 1px 0px white);
+    }
 
-		.to {
-			span {
-				position: absolute;
-				top: 50%;
-				left: 35%;
-				font-size: 2rem;
-				transform: translate(15%, -99%);
-				background: linear-gradient(to right, #ffffff, #ababab);
-				opacity: 80%;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
-			}
-		}
+    .home {
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 3.2rem;
+        transform: translate(-63%, -195%);
+        background: linear-gradient(to right, #ffffff, #ababab);
+        opacity: 75%;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
 
-		.bit {
-			span {
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				font-size: 4.45rem;
-				transform: translate(-40%, -57%);
-				background: linear-gradient(to right, #ffffff, #ababab);
-				opacity: 60%;
-				-webkit-text-fill-color: transparent;
-				background-clip: text;
-			}
-		}
-	}
+    .to {
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 2rem;
+        transform: translate(-332%, -170%);
+        background: linear-gradient(to right, #ffffff, #ababab);
+        opacity: 75%;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
 
-	// EXIT AND PLAY
-	.play__Buttons {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
-		font-size: 1.7rem;
-	}
+    .bit {
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 4.5rem;
+        transform: translate(-39.5%, -85%);
+        background: linear-gradient(to right, #ffffff, #ababab);
+        opacity: 40%;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+  }
 
-	.pink__Gradient {
-		background: linear-gradient(to right, #001079, #0022ff);
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		font-family: PixelCondensed;
-	}
+  // EXIT AND PLAY
+  .play__Buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+  }
 
-	.blue__Gradient {
-		background: linear-gradient(to right, #9900ff, #6000A1);
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		font-family: PixelCondensed;
-	}
+  .pink__Gradient {
+    background: linear-gradient(to right, #001079, #0022ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: PixelCondensed;
+  }
 
-	.separation__line {
-		background-color: white;
-		width: 6vw;
-		height: 0.05rem;
-		margin: 0vh 2vw;
-	}
+  .blue__Gradient {
+    background: linear-gradient(to right, #9900ff, #6000a1);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: PixelCondensed;
+  }
+
+  .separation__line {
+    background-color: white;
+    width: 6vw;
+    height: 0.05rem;
+    margin: 0vh 2vw;
+  }
+
+  .more__Button {
+    font-size: 1.7rem;
+    font-family: Pixel;
+    h4 {
+      background: linear-gradient(to right, #0022ff, #9900ff);
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 1.7rem;
+      transform: translate(-53%, 260%);
+      background: linear-gradient(to right, #ffffff, #ababab);
+      opacity: 75%;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
 }
