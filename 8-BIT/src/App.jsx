@@ -18,8 +18,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route index path="/" element={<Welcome/>} />
-          <Route path="/start" element={<Start/>} />
+          <Route index path="/" element={<Start/>} />
+          <Route path="/welcome" element={<Welcome/>} />
           <Route path="/" element="" />
           <Route path="/" element="" />
           <Route path="/" element="" />

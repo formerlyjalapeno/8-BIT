@@ -31,13 +31,13 @@ const Start = () => {
 
     return (
     <>
-      <div className="start__button">
+      <Link className="welcome__Message__remove-underline start__button" to="start">
         <div className="start__text">
           <button>START</button>
           <span>START</span>
         </div>
           <p>today, at {time}</p>
-      </div>
+      </Link>
     </>
   );
 };
