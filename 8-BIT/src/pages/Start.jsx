@@ -27,16 +27,19 @@ const Start = () => {
     // Cleanup interval on unmount
     return () => clearInterval(interval);
   }, []);
-  
 
-    return (
+
+  return (
     <>
+
       <div className="start__button">
-        <div className="start__text">
-          <button>START</button>
-          <span>START</span>
-        </div>
-          <p>today, at {time}</p>
+        <Link to="/welcome">
+          <div className="start__text">
+            <button>START</button>
+            <span>START</span>
+          </div>
+        </Link>
+        <p>today, at {time}</p>
       </div>
     </>
   );
