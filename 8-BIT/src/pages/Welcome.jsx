@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
+
 const Welcome = () => {
     return ( 
         <main className="welcome__Container">
-            <section>
+            <Link className="welcome__Message__remove-underline" to="start">
                 <article className="welcome__Message">
                     <h1>WELCOME</h1>
                     <div className="double__Text">
@@ -12,7 +14,7 @@ const Welcome = () => {
                         </div>
                     </div>
                 </article>
-            </section>
+            </Link>
         </main>
      );
 }

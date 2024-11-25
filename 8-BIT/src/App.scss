@@ -38,7 +38,9 @@
 
 // WELCOMEPAGE
 
-.welcome__Message {
+.welcome {
+
+	&__Message {
 	display: flex;
 	flex-direction: column;
 	font-family: Pixel;
@@ -46,28 +48,33 @@
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 
-	div {
-		display: flex;
-		flex-direction: row;
-	}
+		div {
+			display: flex;
+			flex-direction: row;
+		}
 
-	h1 {
-		font-size: 3.2rem
-	}
+		h1 {
+			font-size: 3.2rem
+		}
 
-	h2 {
-		font-size: 2rem;
-		line-height: 2rem;
-		margin-right: 1rem;
-	}
+		h2 {
+			font-size: 2rem;
+			line-height: 2rem;
+			margin-right: 1rem;
+		}
 
-	h3{
-		font-size: 4.5rem;
-		line-height: 4rem;
-		background: linear-gradient(to right, #0022ff, #9900ff);
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		filter: drop-shadow(-1px 1px 0px white);
+		h3{
+			font-size: 4.5rem;
+			line-height: 4rem;
+			background: linear-gradient(to right, #0022ff, #9900ff);
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			filter: drop-shadow(-1px 1px 0px white);
+		}
+
+		&__remove-underline {
+			text-decoration: none;
+		}
 	}
 }
 
