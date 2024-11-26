@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Error from "../components/Error";
 
 const Welcome = () => {
   return (
@@ -28,8 +29,8 @@ const Welcome = () => {
       </article>
       <Link to="/morecredits" style={{ textDecoration: "none" }}>
         <div className="more__Button">
-            <h4>MORE</h4>
-            <span>MORE</span>
+          <h4>MORE</h4>
+          <span>MORE</span>
         </div>
       </Link>
     </main>

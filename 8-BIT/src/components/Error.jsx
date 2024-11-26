@@ -2,7 +2,7 @@ const Error = () => {
   return (
     <>
       <section className="Error__Box">
-        <img className="Error__Box__Image" src="" alt="" />
+        <img className="Error__Box__Image" src="../../public/warning.png" alt="" />
         <article className="Error__Box__Container">
           <p className="Error__Box__Container__Text">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta
