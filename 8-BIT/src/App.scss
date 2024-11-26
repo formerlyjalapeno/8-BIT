@@ -175,6 +175,54 @@
   }
 }
 
+.Error {
+  &__Box {
+    left: 399px;
+    top: 600px;
+    position: absolute;
+    width: 305px;
+    height: 93px;
+    flex-shrink: 0;
+    border: 1px solid #fff;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    &__Image {
+      width: 40px;
+      height: 45px;
+      flex-shrink: 0;
+    }
+
+    &__Container {
+      width: 243px;
+      &__Text {
+        color: #fff;
+        text-align: center;
+        font-family: "Pixel Sans Serif Condensed";
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 200.027%; /* 24.003px */
+      }
+    }
+
+    &__Close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+    &__Invisible {
+      display: none;
+    }
+
+    &__Visible {
+      display: flex;
+    }
+  }
+}
+
 .more__Container {
   display: flex;
   flex-direction: column;
@@ -198,7 +246,6 @@
     background: linear-gradient(#0022ff, #9900ff);
     background-clip: text;
     -webkit-text-stroke: 2px transparent;
-
   }
 
   .creators__section {
@@ -249,7 +296,7 @@
         left: 50%;
         font-size: 1.3rem;
         transform: translate(-48.5%, -50%);
-        background: linear-gradient(to right, #D9D9D9, #ffffff);
+        background: linear-gradient(to right, #d9d9d9, #ffffff);
         opacity: 70%;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -275,7 +322,7 @@
 
     h3 {
       font-size: 1rem;
-      background: linear-gradient(to bottom,#0022ff, #9900ff);
+      background: linear-gradient(to bottom, #0022ff, #9900ff);
       background-clip: text;
       -webkit-text-stroke: 1.5px transparent;
       height: 3vh;

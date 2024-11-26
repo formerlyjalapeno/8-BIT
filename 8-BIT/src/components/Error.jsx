@@ -1,20 +1,19 @@
-const Error = () => {
+import { forwardRef } from 'react';
+
+const Error = forwardRef(({ onClick }, ref) => {
   return (
     <>
-      <section className="Error__Box">
+      <section className="Error__Box Error__Box__Invisible" ref={ref}>
         <img className="Error__Box__Image" src="../../public/warning.png" alt="" />
         <article className="Error__Box__Container">
           <p className="Error__Box__Container__Text">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Soluta
-            non, accusantium, et mollitia, amet autem similique magnam vitae
-            ipsa distinctio dolorem. At temporibus ipsam consequuntur nihil. Est
-            autem minus reiciendis!
+          an error occured, <br/> please try again later.
           </p>
         </article>
-        <div className="Error__Box__Close-button">x</div>
+        <img className="Error__Box__Close-button" onClick={onClick} src="../../public/close-button.svg"></img>
       </section>
     </>
   );
-};
+});
 
 export default Error;
