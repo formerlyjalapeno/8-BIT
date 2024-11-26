@@ -154,11 +154,13 @@
   .more__Button {
     font-size: 1.7rem;
     font-family: Pixel;
+
     h4 {
       background: linear-gradient(to right, #0022ff, #9900ff);
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+
     span {
       position: absolute;
       top: 50%;
@@ -169,6 +171,121 @@
       opacity: 75%;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+  }
+}
+
+.more__Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 28vw;
+
+  .creators__Text {
+    margin-bottom: 2vh;
+    line-height: 4.2vh;
+
+    p {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+    font-size: 1.7rem;
+    background: linear-gradient(#0022ff, #9900ff);
+    background-clip: text;
+    -webkit-text-stroke: 2px transparent;
+
+  }
+
+  .creators__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    h3 {
+      font-family: PixelCondensed;
+      font-size: 1.3rem;
+    }
+
+    .separation__line {
+      background-color: white;
+      width: 10vw;
+      height: 0.05rem;
+      margin-top: 2.5vh;
+    }
+
+    .nova {
+      background: linear-gradient(to right, #9900ff, #6000a1);
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0.5px -0.5px 0px white);
+
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 1.3rem;
+        transform: translate(-51.5%, -50%);
+        background: linear-gradient(to right, #ffffff, #ababab);
+        opacity: 75%;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+
+    .sovz {
+      background: linear-gradient(to right, #001079, #0022ff);
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0.5px -0.5px 0px white);
+
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        font-size: 1.3rem;
+        transform: translate(-48.5%, -50%);
+        background: linear-gradient(to right, #D9D9D9, #ffffff);
+        opacity: 70%;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    }
+  }
+
+  .socials {
+    display: flex;
+    flex-direction: row;
+
+    img {
+      height: 2rem;
+    }
+  }
+
+  .music__Credits,
+  .art__Credits {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 2vh 0px 4vh 0px;
+
+    h3 {
+      font-size: 1rem;
+      background: linear-gradient(to bottom,#0022ff, #9900ff);
+      background-clip: text;
+      -webkit-text-stroke: 1.5px transparent;
+      height: 3vh;
+    }
+  }
+
+  .copyright__Text {
+    p {
+      text-align: center;
+      font-size: 0.8rem;
     }
   }
 }
