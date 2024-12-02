@@ -22,7 +22,7 @@ const Start = () => {
     updateTime();
 
     // Update every minute
-    const interval = setInterval(updateTime, 50000);
+    const interval = setInterval(updateTime, 5000);
 
     // Cleanup interval on unmount
     return () => clearInterval(interval);
@@ -36,7 +36,6 @@ const Start = () => {
         <Link to="/welcome">
           <div className="start__text">
             <button>START</button>
-            <span>START</span>
           </div>
         </Link>
         <p>today, at {time}</p>

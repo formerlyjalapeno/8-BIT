@@ -1,40 +1,71 @@
-// STARTPAGE
+// START PAGE
 .start__text {
-  span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-52%, -65%);
+  position: relative;
+
+  button {
     font-size: 20px;
     font-size: 2rem;
-    background: linear-gradient(to right, #ffffff, #ababab);
-    opacity: 50%;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    color: transparent;
+
+    // Styling the pseudo-element to look like the gradient "START" text
+    &::before {
+      content: 'START';
+      font-family: Pixel;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(to right, #0022ff, #9900ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      font-weight: bold;
+      text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7); // White shadow with transparency
+    }
   }
 }
 
 .start__button {
-  border: 0.01rem white solid;
-  font-family: Pixel;
-  padding: 1.5rem 3rem;
-  text-align: center;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 34px 70px;
+  border: 1px solid #FFF;
   p {
-    font-size: 0.6rem;
-  }
-
-  button {
-    font-size: 2rem;
-    font-family: Pixel;
-    width: auto;
-    border: none;
-    background: linear-gradient(to right, #0022ff, #9900ff);
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(-1px 1px 0px white);
+    font-size: 1rem;
+    color: #ababab;
   }
 }
+
+
+.start__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  p {
+    font-size: 1rem;
+    color: #ababab;
+  }
+}
+
+
+.start__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  p {
+    font-size: 1rem;
+    color: #ababab;
+  }
+}
+
 
 // WELCOMEPAGE
 .welcome__Container {
