@@ -26,16 +26,13 @@ const Welcome = () => {
       <article className="welcome__Message">
         <div className="home">
           <h1>WELCOME</h1>
-          <span>WELCOME</span>
         </div>
         <div className="double__Text">
           <div className="to">
             <h2>TO</h2>
-            <span>TO</span>
           </div>
           <div className="bit">
-            <h3>8-BIT</h3>
-            <span>8-BIT</span>
+            <h2></h2>
           </div>
         </div>
       </article>
@@ -49,7 +46,6 @@ const Welcome = () => {
       <Link to="/morecredits" style={{ textDecoration: "none" }}>
         <div className="more__Button">
           <h4>MORE</h4>
-          <span>MORE</span>
         </div>
       </Link>
       <Error onClick={DeactivateErrorOverlay} ref={elementRef} />
@@ -58,3 +54,4 @@ const Welcome = () => {
 };
 
 export default Welcome;
+

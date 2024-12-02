@@ -43,30 +43,6 @@
 }
 
 
-.start__button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  p {
-    font-size: 1rem;
-    color: #ababab;
-  }
-}
-
-
-.start__button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  p {
-    font-size: 1rem;
-    color: #ababab;
-  }
-}
-
-
 // WELCOMEPAGE
 .welcome__Container {
   display: flex;
@@ -79,77 +55,104 @@
     flex-direction: column;
     justify-content: center;
     font-family: Pixel;
-    background: linear-gradient(to right, #0022ff, #9900ff);
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
     margin-bottom: 6vh;
-
-    div {
-      display: flex;
-      flex-direction: row;
-    }
+    position: relative;
 
     h1 {
       font-size: 3.2rem;
-    }
-
-    h2 {
-      font-size: 2rem;
-      line-height: 2rem;
-      margin-right: 1rem;
-    }
-
-    h3 {
-      font-size: 4.5rem;
-      line-height: 4.3rem;
-      background: linear-gradient(to right, #0022ff, #9900ff);
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(-1px 1px 0px white);
-    }
-
-    .home {
-      span {
+      position: relative;
+      &::before {
+        content: 'WELCOME';
         position: absolute;
         top: 50%;
         left: 50%;
-        font-size: 3.2rem;
-        transform: translate(-63%, -195%);
-        background: linear-gradient(to right, #ffffff, #ababab);
-        opacity: 75%;
-        -webkit-text-fill-color: transparent;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(to right, #0022ff, #9900ff);
+        -webkit-background-clip: text;
         background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7);
       }
     }
 
-    .to {
-      span {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        font-size: 2rem;
-        transform: translate(-332%, -170%);
-        background: linear-gradient(to right, #ffffff, #ababab);
-        opacity: 75%;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-    }
+    .double__Text {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
 
-    .bit {
-      span {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        font-size: 4.5rem;
-        transform: translate(-39.5%, -85%);
-        background: linear-gradient(to right, #ffffff, #ababab);
-        opacity: 40%;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+      .to {
+        h2 {
+          font-size: 2rem;
+          line-height: 2rem;
+          margin-right: 1rem;
+          position: relative;
+          &::before {
+            content: 'TO';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(to right, #0022ff, #9900ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7);
+          }
+        }
+      }
+
+      .bit {
+        h2 {
+          font-size: 4.5rem;
+          line-height: 4.3rem;
+          position: relative;
+          &::before {
+            content: '8-BIT';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(to right, #0022ff, #9900ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7);
+          }
+        }
       }
     }
   }
+
+  .more__Button {
+    h4 {
+      font-size: 2.5rem;
+      position: relative;
+      &::before {
+        content: 'MORE';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(to right, #0022ff, #9900ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+
+
 
   // EXIT AND PLAY
   .play__Buttons {
@@ -204,7 +207,6 @@
       background-clip: text;
     }
   }
-}
 
 .Error {
   &__Box {
