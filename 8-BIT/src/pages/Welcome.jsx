@@ -32,7 +32,7 @@ const Welcome = () => {
             <h2>TO</h2>
           </div>
           <div className="bit">
-            <h2></h2>
+            <h2>8-BIT</h2>
           </div>
         </div>
       </article>
