@@ -31,10 +31,9 @@ const Start = () => {
 
   return (
     <>
-
-      <div className="start__button">
+      <div className="landing__button">
         <Link to="/welcome">
-          <div className="start__text">
+          <div className="landing__button__text">
             <button>START</button>
           </div>
         </Link>

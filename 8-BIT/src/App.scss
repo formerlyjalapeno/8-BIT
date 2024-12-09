@@ -1,213 +1,155 @@
 // START PAGE
-.start__text {
-  position: relative;
+.landing {
+  &__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 34px 70px;
+    border: 1px solid #FFF;
+    p {
+      font-size: 1rem;
+      color: #ababab;
+    }
 
-  button {
-    font-size: 20px;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-    color: transparent;
+    &__text {
+      position: relative;
 
-    // Styling the pseudo-element to look like the gradient "START" text
-    &::before {
-      content: 'START';
-      font-family: Pixel;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(to right, #0022ff, #9900ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-align: center;
-      font-weight: bold;
-      text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7); // White shadow with transparency
+      button {
+        font-size: 20px;
+        font-size: 2rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        color: transparent;
+
+        // Styling the pseudo-element to look like the gradient "START" text
+        &::before {
+          content: 'START';
+          font-family: Pixel;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: linear-gradient(to right, #0022ff, #9900ff);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-align: center;
+          font-weight: bold;
+          text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7); // White shadow with transparency
+        }
+      }
     }
   }
 }
 
-.start__button {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 34px 70px;
-  border: 1px solid #FFF;
-  p {
-    font-size: 1rem;
-    color: #ababab;
-  }
-}
-
-
 // WELCOMEPAGE
-.welcome__Container {
+.mainmenu {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 
-  .welcome__Message {
+  &__message {
     display: flex;
     flex-direction: column;
     justify-content: center;
     font-family: Pixel;
     margin-bottom: 6vh;
     position: relative;
-
-    h1 {
-      font-size: 3.2rem;
-      position: relative;
-      &::before {
-        content: 'WELCOME';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(to right, #0022ff, #9900ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+    &__single-text {
+      
+      &__welcome {
+        font-size: 3.2rem;
+        position: relative;
         text-align: center;
         font-weight: bold;
-        text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7);
+        background: linear-gradient(to right, #0022ff, #9900ff); /* Gradient colors */
+        -webkit-background-clip: text; /* Clips background to the text */
+        background-clip: text; /* Clips background to the text */
+        -webkit-text-fill-color: transparent; /* Makes text transparent to show gradient */
+        text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.4); /* Optional shadow for emphasis */
       }
     }
 
-    .double__Text {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-
-      .to {
-        h2 {
+    &__double-text {
+      &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+  
+        &__to {
           font-size: 2rem;
           line-height: 2rem;
           margin-right: 1rem;
           position: relative;
-          &::before {
-            content: 'TO';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(to right, #0022ff, #9900ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            font-weight: bold;
-            text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7);
-          }
+          text-align: center;
+          font-weight: bold;
+          background: linear-gradient(to right, #0022ff, #9900ff); /* Gradient colors */
+          -webkit-background-clip: text; /* Clips background to the text */
+          background-clip: text; /* Clips background to the text */
+          -webkit-text-fill-color: transparent; /* Makes text transparent to show gradient */
+          text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.4); /* Optional shadow for emphasis */
         }
-      }
-
-      .bit {
-        h2 {
+        &__bit {
           font-size: 4.5rem;
           line-height: 4.3rem;
           position: relative;
-          &::before {
-            content: '8-BIT';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(to right, #0022ff, #9900ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            font-weight: bold;
-            text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7);
-          }
+          text-align: center;
+          font-weight: bold;
+          background: linear-gradient(to right, #0022ff, #9900ff); /* Gradient colors */
+          -webkit-background-clip: text; /* Clips background to the text */
+          background-clip: text; /* Clips background to the text */
+          -webkit-text-fill-color: transparent; /* Makes text transparent to show gradient */
+          text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.4); /* Optional shadow for emphasis */
         }
       }
     }
   }
-
-  .more__Button {
+  &__credits-button {
     h4 {
       font-size: 1.7rem;
       position: relative;
-      &::before {
-        content: 'MORE';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(to right, #0022ff, #9900ff);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-align: center;
-        font-weight: bold;
-        text-shadow: -5px 0px 0 rgba(255, 255, 255, 0.7);
-      }
+      text-align: center;
+      font-weight: bold;
+      background: linear-gradient(to right, #0022ff, #9900ff); /* Gradient colors */
+      -webkit-background-clip: text; /* Clips background to the text */
+      background-clip: text; /* Clips background to the text */
+      -webkit-text-fill-color: transparent; /* Makes text transparent to show gradient */
+      text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.4); /* Optional shadow for emphasis */
     }
   }
-}
-
-
-
-  // EXIT AND PLAY
-  .play__Buttons {
+  &__play-buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     font-size: 1.7rem;
     margin-bottom: 1rem;
-  }
-
-  .pink__Gradient {
-    background: linear-gradient(to right, #001079, #0022ff);
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: PixelCondensed;
-  }
-
-  .blue__Gradient {
-    background: linear-gradient(to right, #9900ff, #6000a1);
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-family: PixelCondensed;
-  }
-
-  .separation__line {
-    background-color: white;
-    width: 6vw;
-    height: 0.05rem;
-    margin: 0vh 2vw;
-  }
-
-  .more__Button {
-    font-size: 1.7rem;
-    font-family: Pixel;
-
-    h4 {
-      background: linear-gradient(to right, #0022ff, #9900ff);
+    &__pink-gradient {
+      background: linear-gradient(to right, #001079, #0022ff);
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      font-family: PixelCondensed;
     }
-
-    span {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      font-size: 1.7rem;
-      transform: translate(-53%, 260%);
-      background: linear-gradient(to right, #ffffff, #ababab);
-      opacity: 75%;
+    &__blue-gradient {
+      background: linear-gradient(to right, #9900ff, #6000a1);
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      font-family: PixelCondensed;
+    }
+    &__seperation-line {
+      background-color: white;
+      width: 6vw;
+      height: 0.05rem;
+      margin: 0vh 2vw;
     }
   }
+}
 
+// ERROR
 .Error {
   &__Box {
     left: 399px;

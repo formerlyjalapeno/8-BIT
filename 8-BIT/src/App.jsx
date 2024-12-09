@@ -1,9 +1,9 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Start from "./pages/Start";
-import Welcome from "./pages/Welcome"
-import Redirecting  from "./pages/Redirecting"
-import More from "./pages/More"
+import LandingPage from "./pages/LandingPage";
+import MainMenu from "./pages/MainMenu"
+import Redirect from "./pages/Redirect"
+import Credits from "./pages/Credits"
 
 function App() {
   const getTime = () => {
@@ -20,10 +20,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route index path="/" element={<Start/>} />
-          <Route path="/welcome" element={<Welcome/>} />
-          <Route path="/loading" element={<Redirecting />} />
-          <Route path="/morecredits" element={<More />} />
+          <Route index path="/" element={<LandingPage/>} />
+          <Route path="/welcome" element={<MainMenu/>} />
+          <Route path="/loading" element={<Redirect/>} />
+          <Route path="/credits" element={<Credits/>} />
           <Route path="/" element="" />
         </Routes>
       </BrowserRouter>
