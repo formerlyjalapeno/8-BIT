@@ -29,15 +29,24 @@ const Welcome = () => {
         </div>
         <div className="mainmenu__message__double-text">
           <div className="mainmenu__message__double-text__container">
-            <h2 className="mainmenu__message__double-text__container__to">TO</h2>
+            <h2 className="mainmenu__message__double-text__container__to">
+              TO
+            </h2>
           </div>
           <div className="mainmenu__message__double-text__container">
-            <h2 className="mainmenu__message__double-text__container__bit">8-BIT</h2>
+            <h2 className="mainmenu__message__double-text__container__bit">
+              8-BIT
+            </h2>
           </div>
         </div>
       </article>
       <article className="mainmenu__play-buttons">
-        <h4 className="mainmenu__play-buttons__pink-gradient"  onClick={ActivateErrorOverlay}>EXIT</h4>
+        <h4
+          className="mainmenu__play-buttons__pink-gradient"
+          onClick={ActivateErrorOverlay}
+        >
+          EXIT
+        </h4>
         <div className="mainmenu__play-buttons__seperation-line"></div>
         <Link to="/loading" style={{ textDecoration: "none" }}>
           <h4 className="mainmenu__play-buttons__blue-gradient">PLAY</h4>
@@ -54,7 +63,3 @@ const Welcome = () => {
 };
 
 export default Welcome;
-
-
-
-

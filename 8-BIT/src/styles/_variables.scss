@@ -1,0 +1,47 @@
+// Colors
+$color-white: #fff;
+$color-grey-light: #ababab;
+$color-gradient-start: #0022ff;
+$color-gradient-mid: #001079;
+$color-gradient-end: #9900ff;
+$color-gradient-alt: #6000a1;
+
+// Gradients
+$gradient-main: linear-gradient(
+  to right,
+  $color-gradient-start,
+  $color-gradient-end
+);
+$gradient-secondary: linear-gradient(
+  to right,
+  $color-gradient-end,
+  $color-gradient-alt
+);
+$gradient-variant: linear-gradient(
+  to right,
+  $color-gradient-mid,
+  $color-gradient-start
+);
+
+// Fonts
+$font-pixel: "Pixel", sans-serif;
+$font-pixel-condensed: "PixelCondensed", sans-serif;
+
+// Font Sizes (example variables if you want consistent sizing)
+$font-size-xl: 3.2rem;
+$font-size-lg: 2rem;
+$font-size-md: 1.7rem;
+$font-size-sm: 1rem;
+$font-size-xs: 0.8rem;
+
+// Shadows
+$text-shadow-subtle: 2px 2px 0 rgba($color-white, 0.4);
+$text-shadow-strong: 2px 2px 0 rgba($color-white, 0.6);
+$text-shadow-negative: -2px 2px 0 rgba($color-white, 0.6);
+
+// Bar Styles
+$bar-width: 300px;
+$bar-height: 20px;
+$bar-background: #e0e0e0;
+$bar-radius: 10px;
+$bar-color: #3b82f6;

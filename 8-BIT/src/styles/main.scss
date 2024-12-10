@@ -1,0 +1,392 @@
+// IMPORTS
+@import "variables";
+
+// START PAGE
+.landing {
+  &__button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 34px 70px;
+    border: 1px solid $color-white;
+
+    p {
+      font-size: $font-size-sm;
+      color: $color-grey-light;
+    }
+
+    &__text {
+      position: relative;
+
+      button {
+        font-size: $font-size-lg;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        color: transparent;
+
+        &::before {
+          content: "START";
+          font-family: $font-pixel;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: $gradient-main;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-align: center;
+          font-weight: bold;
+          text-shadow: -5px 0px 0 rgba($color-white, 0.7);
+        }
+      }
+    }
+  }
+}
+
+// WELCOMEPAGE
+.mainmenu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  &__message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: $font-pixel;
+    margin-bottom: 6vh;
+    position: relative;
+
+    &__single-text {
+      &__welcome {
+        font-size: $font-size-xl;
+        position: relative;
+        text-align: center;
+        font-weight: bold;
+        background: $gradient-main;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: $text-shadow-subtle;
+      }
+    }
+
+    &__double-text {
+      &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        &__to {
+          font-size: $font-size-lg;
+          line-height: 2rem;
+          margin-right: 1rem;
+          position: relative;
+          text-align: center;
+          font-weight: bold;
+          background: $gradient-main;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-shadow: $text-shadow-subtle;
+        }
+
+        &__bit {
+          font-size: 4.5rem;
+          line-height: 4.3rem;
+          position: relative;
+          text-align: center;
+          font-weight: bold;
+          background: $gradient-main;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          text-shadow: $text-shadow-subtle;
+        }
+      }
+    }
+  }
+
+  &__credits-button {
+    display: flex;
+    justify-content: center;
+
+    h4 {
+      font-size: $font-size-md;
+      position: relative;
+      text-align: center;
+      font-weight: bold;
+      background: $gradient-main;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: $text-shadow-subtle;
+    }   
+  }
+
+  &__play-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: $font-size-md;
+    margin-bottom: 1rem;
+
+    &__pink-gradient {
+      background: linear-gradient(
+        to right,
+        $color-gradient-mid,
+        $color-gradient-start
+      );
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: $font-pixel-condensed;
+    }
+
+    &__blue-gradient {
+      background: $gradient-secondary;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: $font-pixel-condensed;
+    }
+
+    &__seperation-line {
+      background-color: $color-white;
+      width: 6vw;
+      height: 0.05rem;
+      margin: 0vh 2vw;
+    }
+  }
+}
+
+// ERROR
+.error {
+  &__box {
+    left: 399px;
+    top: 600px;
+    position: absolute;
+    width: 305px;
+    height: 93px;
+    flex-shrink: 0;
+    border: 1px solid $color-white;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+    &__image {
+      width: 40px;
+      height: 45px;
+      flex-shrink: 0;
+    }
+
+    &__container {
+      width: 243px;
+
+      &__text {
+        color: $color-white;
+        text-align: center;
+        font-family: "Pixel Sans Serif Condensed"; // If desired, set this up as a variable too
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 200%;
+      }
+    }
+
+    &__close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+    }
+
+    &__invisible {
+      display: none;
+    }
+
+    &__visible {
+      display: flex;
+    }
+  }
+}
+
+.credits {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 28vw;
+
+  &__header {
+    margin-bottom: 2vh;
+    line-height: 4.2vh;
+
+    p {
+      text-align: center;
+      font-size: $font-size-xs;
+    }
+  }
+
+  h1,
+  h2 {
+    text-align: center;
+    font-size: $font-size-md;
+    background: $gradient-main;
+    background-clip: text;
+    -webkit-text-stroke: 2px transparent;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    h3 {
+      font-family: $font-pixel-condensed;
+      font-size: 1.3rem;
+    }
+
+    &__creators {
+      &__separation__line {
+        background-color: $color-white;
+        width: 10vw;
+        height: 0.05rem;
+        margin-top: 2.5vh;
+      }
+
+      &__nova {
+        font-size: 1.6rem;
+        position: relative;
+        text-align: left;
+        font-weight: bold;
+        background: $gradient-secondary;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: $text-shadow-strong;
+
+        &__socials {
+          display: flex;
+          flex-direction: row;
+
+          img {
+            height: 2rem;
+          }
+        }
+      }
+
+      &__sovz {
+        font-size: 1.6rem;
+        position: relative;
+        text-align: left;
+        font-weight: bold;
+        background: $gradient-variant;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: $text-shadow-negative;
+
+        &__socials {
+          display: flex;
+          flex-direction: row;
+
+          img {
+            height: 2rem;
+          }
+        }
+      }
+    }
+  }
+
+  &__second-section {
+    &__music-credits,
+    &__art-credits {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 2vh 0px 4vh 0px;
+
+      .h3 {
+        font-size: 1rem;
+        background: linear-gradient(
+          to bottom,
+          $color-gradient-start,
+          $color-gradient-end
+        );
+        background-clip: text;
+        -webkit-text-stroke: 1.5px transparent;
+        height: 3vh;
+      }
+    }
+  }
+
+  &__copyright-text {
+    p {
+      text-align: center;
+      font-size: $font-size-xs;
+    }
+  }
+
+  &__back-button {
+    font-size: 1.4rem;
+    position: relative;
+    text-align: left;
+    font-weight: bold;
+    background: $gradient-main;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: $text-shadow-subtle;
+  }
+}
+
+// Loading bar
+
+.loading-bar {
+  // Scale everything up 10x to emphasize pixelation
+  transform: scale(3);
+  transform-origin: middle left;
+  image-rendering: pixelated;
+
+  &__text {
+    font-size: $font-size-xs; // Small font, becomes large when scaled
+    font-family: $font-pixel;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+  }
+
+  // Wrapper that holds the masked shape
+  &__wrapper {
+    position: relative;
+    width: 16px; // very low-res width
+    height: 8px; // very low-res height
+    background: $bar-background;
+    // Apply the mask to create the pixel-rounded shape
+    mask-image: url("data:image/svg+xml,%3Csvg width='16' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2' y='0' width='12' height='1' fill='white'/%3E%3Crect x='1' y='1' width='14' height='1' fill='white'/%3E%3Crect x='0' y='2' width='16' height='1' fill='white'/%3E%3Crect x='0' y='3' width='16' height='1' fill='white'/%3E%3Crect x='0' y='4' width='16' height='1' fill='white'/%3E%3Crect x='0' y='5' width='16' height='1' fill='white'/%3E%3Crect x='1' y='6' width='14' height='1' fill='white'/%3E%3Crect x='2' y='7' width='12' height='1' fill='white'/%3E%3C/svg%3E");
+    mask-size: cover;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    image-rendering: pixelated; // Ensure mask remains pixel-crisp
+    overflow: hidden;
+  }
+
+  &__progress {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(
+      to right,
+      $color-gradient-start,
+      $color-gradient-end
+    );
+    transition: width 0.1s steps(1); // step transitions feel more retro
+  }
+}
