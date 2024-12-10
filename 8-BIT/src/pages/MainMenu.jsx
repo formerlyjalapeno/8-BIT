@@ -7,16 +7,16 @@ const Welcome = () => {
 
   const ActivateErrorOverlay = () => {
     if (elementRef.current) {
-      elementRef.current.classList.add("Error__Box__Visible");
-      elementRef.current.classList.remove("Error__Box__Invisible");
+      elementRef.current.classList.remove("error__box__invisible");
+      elementRef.current.classList.add("error__box__visible");
       console.log("activate");
     }
   };
 
   const DeactivateErrorOverlay = () => {
     if (elementRef.current) {
-      elementRef.current.classList.add("Error__Box__Invisible");
-      elementRef.current.classList.remove("Error__Box__Visible");
+      elementRef.current.classList.remove("error__box__visible");
+      elementRef.current.classList.add("error__box__invisible");
       console.log("deactivate");
     }
   };
