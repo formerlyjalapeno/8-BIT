@@ -1,16 +1,20 @@
-import { forwardRef } from 'react';
+import { forwardRef } from "react";
 
 const Error = forwardRef(({ onClick }, ref) => {
   return (
     <>
-      <section className="Error__Box Error__Box__Invisible" ref={ref}>
-        <img className="Error__Box__Image" src="/warning.png" alt="" />
-        <article className="Error__Box__Container">
-          <p className="Error__Box__Container__Text">
-          an error occured, <br/> please try again later.
+      <section className="error__box error__box__invisible" ref={ref}>
+        <img className="error__box__image" src="/warning.png" alt="" />
+        <article className="error__box__container">
+          <p className="error__box__container__text">
+            an error occured, <br /> please try again later.
           </p>
         </article>
-        <img className="Error__Box__Close-button" onClick={onClick} src="/close-button.svg"></img>
+        <img
+          className="error__box__close-button"
+          onClick={onClick}
+          src="/close-button.svg"
+        ></img>
       </section>
     </>
   );
