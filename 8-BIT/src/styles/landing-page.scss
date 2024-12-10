@@ -1,0 +1,44 @@
+// LANDING PAGE
+.landing {
+    &__button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 34px 70px;
+      border: 1px solid $color-white;
+  
+      p {
+        font-size: $font-size-sm;
+        color: $color-grey-light;
+      }
+  
+      &__text {
+        position: relative;
+  
+        button {
+          font-size: $font-size-lg;
+          background: none;
+          border: none;
+          cursor: pointer;
+          position: relative;
+          color: transparent;
+  
+          &::before {
+            content: "START";
+            font-family: $font-pixel;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: $gradient-main;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: -5px 0px 0 rgba($color-white, 0.7);
+          }
+        }
+      }
+    }
+  }

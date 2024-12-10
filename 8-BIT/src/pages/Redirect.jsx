@@ -30,7 +30,7 @@ const LoadingBar = () => {
         setProgress(100);
         clearInterval(interval);
         setTimeout(() => {
-          window.location.href = "/welcome";
+          window.location.href = "/room";
         }, 1200);
       }
     }, intervalDuration);

@@ -1,0 +1,30 @@
+// INVENTORY
+.inventory {
+    position: absolute;
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: flex-end;    /* Vertical centering */
+    height: 100vh;          /* Full viewport height */
+    bottom: 0;
+    left:37.5%;
+    &__container {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        padding: 20px;
+        margin: 20px;
+
+        &__slot {
+            background: gray;
+            width: 75px;
+            height: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .p {
+                z-index: 1;
+
+            }
+        }
+    }
+}
