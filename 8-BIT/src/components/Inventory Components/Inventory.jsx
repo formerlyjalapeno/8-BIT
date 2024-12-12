@@ -1,25 +1,26 @@
-const Inventory = () => {
-    return ( 
-            <section className="inventory">
-                <article className="inventory__container">
-                    <div className="inventory__container__slot">
-                        <p>item 1</p>
-                    </div>
-                    <div className="inventory__container__slot">
-                        <p>item 2</p>
-                    </div>
-                    <div className="inventory__container__slot">
-                        <p>item 3</p>
-                    </div>
-                    <div className="inventory__container__slot">
-                        <p>item 4</p>
-                    </div>
-                    <div className="inventory__container__slot">
-                        <p>item 5</p>
-                    </div>
-                </article>
-            </section>
-     );
-}
- 
-export default Inventory;
+// inventory.jsx
+const Inventory = ({ items }) => {
+    const slotCount = 5; // number of slots you want to display at all times
+  
+    // Generate an array of the desired number of slots
+    const slots = [];
+    for (let i = 0; i < slotCount; i++) {
+      const currentItem = items[i]; // might be undefined if no item at this index
+      slots.push(
+        <div key={i} className="inventory__container__slot">
+          {currentItem ? <p>{currentItem.name}</p> : null}
+        </div>
+      );
+    }
+  
+    return (
+      <section className="inventory">
+        <article className="inventory__container">
+          {slots}
+        </article>
+      </section>
+    );
+  };
+  
+  export default Inventory;
+  
