@@ -5,13 +5,16 @@
   transform: scale(3);
   transform-origin: middle left;
   image-rendering: pixelated;
+  text-align: center;
 
   &__text {
-    font-size: $font-size-xs; // Small font, becomes large when scaled
-    font-family: $font-pixel;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
+    font-size: $font-size-xxs; // Small font, becomes large when scaled
+    font-family: $font-pixel-condensed;
+  }
+
+  &__extra {
+    font-size: $font-size-xxxs;
+    font-family: $font-pixel-condensed;
   }
 
   // Wrapper that holds the masked shape
@@ -33,7 +36,8 @@
     position: absolute;
     top: 100%;
     left: 0;
-    height: 100%;
+    height: 0.2rem;
+    margin-top: 5px;
     width: 0%;
     background: linear-gradient(
       to right,
