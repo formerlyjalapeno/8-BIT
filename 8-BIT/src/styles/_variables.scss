@@ -37,7 +37,8 @@ $font-size-xxs: 0.4rem;
 $font-size-xxxs: 0.2rem;
 
 // Shadows
-$text-shadow-subtle: 2px 2px 0 rgba($color-white, 0.4);
+$text-shadow-subtler: -4px 0px 0 rgba($color-white, 0.3);
+$text-shadow-subtle: -4px 0px 0 rgba($color-white, 0.6);
 $text-shadow-strong: 2px 2px 0 rgba($color-white, 0.6);
 $text-shadow-stronger: 2px 2px 0 rgba($color-white, 0.8);
 $text-shadow-negative: -2px 2px 0 rgba($color-white, 0.6);

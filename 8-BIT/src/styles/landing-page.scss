@@ -1,44 +1,44 @@
 // LANDING PAGE
 .landing {
-    &__button {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 34px 70px;
-      border: 1px solid $color-white;
-  
-      p {
-        font-size: $font-size-sm;
-        color: $color-grey-light;
-      }
-  
-      &__text {
+  &__button {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 34px 70px;
+    border: 1px solid $color-white;
+
+    p {
+      font-size: $font-size-xs;
+      color: $color-white;
+    }
+
+    &__text {
+      position: relative;
+
+      button {
+        font-size: $font-size-lg;
+        background: none;
+        border: none;
+        cursor: pointer;
         position: relative;
-  
-        button {
-          font-size: $font-size-lg;
-          background: none;
-          border: none;
-          cursor: pointer;
-          position: relative;
-          color: transparent;
-  
-          &::before {
-            content: "START";
-            font-family: $font-pixel;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: $gradient-main;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-align: center;
-            font-weight: bold;
-            text-shadow: -5px 0px 0 rgba($color-white, 0.7);
-          }
+        color: transparent;
+
+        &::before {
+          content: "START";
+          font-family: $font-pixel;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: $gradient-main;
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-weight: bold;
+          filter: drop-shadow(-1px 1px 0px white);
+          text-shadow: -5px 0px 0 rgba($color-white, 0.7);
         }
       }
     }
   }
+}
