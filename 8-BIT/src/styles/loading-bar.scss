@@ -5,37 +5,32 @@
   image-rendering: pixelated;
   text-align: center;
 
-  &__text {
-    font-size: $font-size-xxs; // Small font, becomes large when scaled
-    font-family: $font-pixel-condensed;
+  &__primary-container {
+    &__text {
+      font-size: $font-size-xxs; // Small font, becomes large when scaled
+      font-family: $font-pixel-condensed;
+    }
+
+    &__extra {
+      font-size: $font-size-xxxs;
+      font-family: $font-pixel-condensed;
+    }
   }
 
-  &__extra {
-    font-size: $font-size-xxxs;
-    font-family: $font-pixel-condensed;
-  }
-
-  &__wrapper {
-    position: relative;
-    width: 1rem; // 16px -> 1rem
-    height: 0.5rem; // 8px -> 0.5rem
-    background: $bar-background;
-    mask-image: url("data:image/svg+xml,%3Csvg ...");
-    mask-size: cover;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    image-rendering: pixelated;
-    overflow: hidden;
-  }
-
-  &__progress {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    height: 0.4rem;
-    margin-top: 5px;
-    width: 0%;
-    background: linear-gradient(to right, $color-gradient-start, $color-gradient-end);
-    transition: width 0.1s steps(1);
+  &__secondary-container {
+    &__progress {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      height: 0.6rem;
+      margin-top: 5px;
+      width: 0%;
+      background: linear-gradient(
+        to right,
+        $color-gradient-start,
+        $color-gradient-end
+      );
+      transition: width 0.1s steps(1);
+    }
   }
 }

@@ -1,0 +1,67 @@
+// ROOM
+
+.room {
+  &__container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__item {
+      &__1 {
+        position: absolute;
+        width: 10rem; // 50px -> 50/16 = 3.125rem
+        height: 14rem;
+        left: 87.5%;
+        top: 10%;
+      }
+      &__2 {
+        position: absolute;
+        width: 4.6875rem; // 75px -> 4.6875rem
+        left: 3.125rem; // 50px -> 3.125rem
+        top: 0;
+      }
+      &__3 {
+        position: absolute;
+        width: 3.125rem; // 50px -> 3.125rem
+        left: 7.5rem;
+        top: 0;
+      }
+      &__4 {
+        position: absolute;
+        width: 3.125rem; // 50px -> 3.125rem
+        left: 20rem;
+        top: 0;
+      }
+    }
+    &__temp-text {
+    }
+
+    &__overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &__content {
+        background: grey;
+        padding: 1.25rem;
+        text-align: center;
+        &__question {
+          &__1 {
+            position: absolute;
+            left: 12.5%;
+            top: 25%;
+            width: 17.5rem;
+            height: 15rem;
+          }
+        }
+      }
+    }
+  }
+}

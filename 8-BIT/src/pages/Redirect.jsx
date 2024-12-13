@@ -40,11 +40,17 @@ const LoadingBar = () => {
 
   return (
     <div className="loading-bar">
-      <div className="loading-bar__text">Redirecting... {progress}%</div>
-      <p className="loading-bar__extra">bringing you to your mission</p>
-      <div className="loading-bar__container">
+      <div className="loading-bar__primary-container">
+        <div className="loading-bar__primary-container__text">
+          Redirecting... {progress}%
+        </div>
+        <p className="loading-bar__primary-container__extra">
+          bringing you to your mission
+        </p>
+      </div>
+      <div className="loading-bar__secondary-container">
         <div
-          className="loading-bar__progress"
+          className="loading-bar__secondary-container__progress"
           style={{ width: `${progress}%` }}
         />
       </div>
