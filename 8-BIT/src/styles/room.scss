@@ -7,6 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     &__item {
       &__1 {
         position: absolute;
@@ -51,8 +52,8 @@
       background-size: contain;
       background-position: center;
     }
-    &__temp-text {
-    }
+    // &__temp-text {
+    // }
 
     &__question {
       &__overlay {
@@ -68,6 +69,7 @@
 
         &__content {
           background: grey;
+          font-family: $font-pixel;
           padding: 0.25rem 1.25rem;
           text-align: center;
           width: 300px;
@@ -154,17 +156,16 @@
           }
 
           button {
-            font-size: 1rem;
+            font-size: 0.6rem;
             padding: 0.5rem 1rem;
-            background: #444;
+            background: #5A6DDE;
             color: #fff;
             border: none;
-            border-radius: 0.25rem;
             cursor: pointer;
             margin-top: 15px;
-
+            font-family: $font-pixel;
             &:hover {
-              background: #666;
+              background: #C51F91;
             }
           }
         }

@@ -46,7 +46,7 @@ const More = () => {
         <article className="credits__second-section__art-credits">
           <h3>ART</h3>
           <div className="credits__second-section__art-credits__text">
-            <p>Lorem</p>
+            <p>@Sovz</p>
             <p>Lorem</p>
             <p>Lorem</p>
             <p>Lorem</p>
