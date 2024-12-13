@@ -1,0 +1,51 @@
+// ERROR
+.error {
+    &__box {
+      left: 24.9375rem; // 399px -> 399/16=24.9375rem
+      top: 37.5rem; // 600px -> 600/16=37.5rem
+      position: absolute;
+      width: 19.0625rem; // 305px -> 305/16=19.0625rem
+      height: 5.8125rem; // 93px -> 93/16=5.8125rem
+      flex-shrink: 0;
+      border: 0.0625rem solid $color-white; //1px ->0.0625rem
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+  
+      &__image {
+        width: 2.5rem; //40px ->2.5rem
+        height: 2.8125rem; //45px ->2.8125rem
+        flex-shrink: 0;
+      }
+  
+      &__container {
+        width: 15.1875rem; //243px->15.1875rem
+  
+        &__text {
+          color: $color-white;
+          text-align: center;
+          font-family: "Pixel Sans Serif Condensed";
+          font-size: 0.75rem; // 12px->0.75rem
+          font-style: normal;
+          font-weight: 400;
+          line-height: 200%;
+        }
+      }
+  
+      &__close-button {
+        position: absolute;
+        top: 0.625rem; //10px->0.625rem
+        right: 0.625rem; //10px->0.625rem
+        width: 1.25rem; //20px->1.25rem
+        height: 1.25rem; //20px->1.25rem
+      }
+  
+      &__invisible {
+        display: none;
+      }
+  
+      &__visible {
+        display: flex;
+      }
+    }
+  }

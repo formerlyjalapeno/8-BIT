@@ -2,27 +2,54 @@
 .inventory {
   position: absolute;
   display: flex;
-  justify-content: center; /* Horizontal centering */
   align-items: flex-end; /* Vertical centering */
   bottom: 0;
-  left: 34.5%;
+  left: 40rem;
+
   &__container {
     display: flex;
     flex-direction: row;
-    gap: 40px;
-    padding: 20px;
-    margin: 20px;
+    gap: 2.5rem; // 40px -> 40/16 = 2.5rem
+    padding: 1.25rem; // 20px -> 1.25rem
+    margin: 1.25rem; // 20px -> 1.25rem
 
     &__slot {
       background: gray;
-      width: 75px;
-      height: 75px;
+      width: 4.6875rem;  // 75px -> 75/16 = 4.6875rem
+      height: 4.6875rem; // 75px -> 4.6875rem
       display: flex;
       justify-content: center;
       align-items: center;
 
       p {
         z-index: 1;
+      }
+
+      &__item {
+        &__1 {
+          position: absolute;
+          width: 3.125rem; // 50px -> 50/16 = 3.125rem
+          left: 0;
+          top: 0;
+        }
+        &__2 {
+          position: absolute;
+          width: 4.6875rem; // 75px -> 4.6875rem
+          left: 3.125rem;   // 50px -> 3.125rem
+          top: 0;
+        }
+        &__3 {
+          position: absolute;
+          width: 3.125rem; // 50px -> 3.125rem
+          left: 0;
+          top: 0;
+        }
+        &__4 {
+          position: absolute;
+          width: 3.125rem; // 50px -> 3.125rem
+          left: 0;
+          top: 0;
+        }
       }
     }
   }
