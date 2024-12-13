@@ -40,7 +40,8 @@ const LoadingBar = () => {
 
   return (
     <div className="loading-bar">
-      <div className="loading-bar__text">Loading... {progress}%</div>
+      <div className="loading-bar__text">Redirecting... {progress}%</div>
+      <p className="loading-bar__extra">bringing you to your mission</p>
       <div className="loading-bar__container">
         <div
           className="loading-bar__progress"

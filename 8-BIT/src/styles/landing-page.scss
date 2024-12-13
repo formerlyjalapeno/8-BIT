@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     padding: 2.125rem 4.375rem; // 34px 70px -> 34/16=2.125rem, 70/16=4.375rem
-    border: 0.0625rem solid $color-white; // 1px -> 0.0625rem
+    border: 1px solid $color-white; // 1px -> 0.0625rem
 
     p {
       font-size: $font-size-sm; // already using variables, presumably rem
@@ -16,7 +16,7 @@
       position: relative;
 
       button {
-        font-size: $font-size-lg; // variable
+        font-size: $font-size-lg;
         background: none;
         border: none;
         cursor: pointer;
@@ -34,12 +34,9 @@
           -webkit-background-clip: text;
           background-clip: text;
           -webkit-text-fill-color: transparent;
-          text-align: center;
           font-weight: bold;
-
-          // text-shadow: -5px 0px 0 rgba($color-white, 0.7);
-          // -5px -> -5 * 0.0625rem = -0.3125rem
-          text-shadow: -0.3125rem 0 0 rgba($color-white, 0.7);
+          filter: drop-shadow(-1px 1px 0px white);
+          text-shadow: -5px 0px 0 rgba($color-white, 0.7);
         }
       }
     }
