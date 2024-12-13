@@ -1,26 +1,35 @@
-// inventory.jsx
-const Inventory = ({ items }) => {
-    const slotCount = 5; // number of slots you want to display at all times
-  
-    // Generate an array of the desired number of slots
-    const slots = [];
-    for (let i = 0; i < slotCount; i++) {
-      const currentItem = items[i]; // might be undefined if no item at this index
-      slots.push(
-        <div key={i} className="inventory__container__slot">
-          {currentItem ? <p>{currentItem.name}</p> : null}
-        </div>
-      );
-    }
-  
-    return (
-      <section className="inventory">
-        <article className="inventory__container">
-          {slots}
-        </article>
-      </section>
+// Inventory.jsx
+const Inventory = ({ items, onInspectItem }) => {
+  const slotCount = 5; // always show 5 slots
+  const slots = [];
+
+  for (let i = 0; i < slotCount; i++) {
+    const currentItem = items[i];
+    slots.push(
+      <div
+        key={i}
+        className="inventory__container__slot"
+        onClick={() => {
+          if (currentItem && currentItem.inspectable) {
+            onInspectItem(currentItem.id);
+          }
+        }}
+      >
+        {currentItem ? (
+          <img
+            className={`inventory__container__slot__${currentItem.id}`}
+            src={currentItem.img}
+          ></img>
+        ) : null}
+      </div>
     );
-  };
-  
-  export default Inventory;
-  
+  }
+
+  return (
+    <section className="inventory">
+      <article className="inventory__container">{slots}</article>
+    </section>
+  );
+};
+
+export default Inventory;

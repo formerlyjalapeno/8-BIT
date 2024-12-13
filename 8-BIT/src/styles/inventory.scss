@@ -4,29 +4,35 @@
   display: flex;
   align-items: flex-end; /* Vertical centering */
   bottom: 0;
-  left: 40rem;
+  left: 37.5rem;
   z-index: 100;
 
   &__container {
+    width: 640px;
+    height: 124px;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     gap: 2.5rem; // 40px -> 40/16 = 2.5rem
-    padding: 1.25rem; // 20px -> 1.25rem
-    margin: 1.25rem; // 20px -> 1.25rem
-
+    background-image: url(/inventory-background.png);
+    margin: 20px;
     &__slot {
-      background: $color-primary;
-      width: 4.6875rem;  // 75px -> 75/16 = 4.6875rem
+      width: 4.6875rem; // 75px -> 75/16 = 4.6875rem
       height: 4.6875rem; // 75px -> 4.6875rem
       display: flex;
       justify-content: center;
       align-items: center;
-
+      background-image: url(/slot.png);
       &:hover {
-        background: $color-secondary;
+        background-image: url(/slot-hover.png);
       }
       p {
         z-index: 1;
+      }
+      &__0 {        
+        width: 75%;
+        height: 75%;
       }
     }
   }

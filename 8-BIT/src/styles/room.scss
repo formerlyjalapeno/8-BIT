@@ -2,18 +2,22 @@
 
 .room {
   &__container {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
     &__item {
       &__1 {
         position: absolute;
-        width: 10rem; // 50px -> 50/16 = 3.125rem
-        height: 14rem;
-        left: 87.5%;
-        top: 10%;
+        width: 12rem; // 50px -> 50/16 = 3.125rem
+        height: 16rem;
+        left: 69%;
+        top: 12%;
+        background: none; /* Removes any background */
+        border: none; /* Removes default border */
+        color: transparent; /* Makes the text transparent */
+        cursor: pointer; /* Still shows a pointer on hover if desired */
       }
       &__2 {
         position: absolute;
@@ -34,31 +38,134 @@
         top: 0;
       }
     }
+    &__item-present {
+      background-image: url("/room-1-with-item.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    &__item-gone {
+      background-image: url("/room-1-without-item.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
     &__temp-text {
     }
 
-    &__overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &__question {
+      &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-      &__content {
-        background: grey;
-        padding: 1.25rem;
-        text-align: center;
-        &__question {
-          &__1 {
-            position: absolute;
-            left: 12.5%;
-            top: 25%;
-            width: 17.5rem;
-            height: 15rem;
+        &__content {
+          background: grey;
+          padding: 0.25rem 1.25rem;
+          text-align: center;
+          width: 300px;
+          height: 500px;
+          display: flex;
+          justify-content: center;
+          flex-wrap: wrap;
+          &__question {
+            &__1 {
+              position: absolute;
+              left: 26%;
+              top: 37.5%;
+              width: 17.5rem;
+              height: 15rem;
+              background: none; /* Removes any background */
+              border: none; /* Removes default border */
+              color: transparent; /* Makes the text transparent */
+              cursor: pointer; /* Still shows a pointer on hover if desired */
+            }
+          }
+          h2 {
+            color: grey;
+          }
+
+          p {
+            font-size: $font-size-md;
+          }
+
+          button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+
+            &:hover {
+              background: #666;
+            }
+          }
+        }
+      }
+    }
+    &__item {
+      &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        &__content {
+          background: #000000;
+          padding: 0.5rem 1.25rem 1.75rem; // 20px if converting to rem
+          border-radius: 0.5rem; // 8px in rem
+          text-align: center;
+          width: 400px; // or use rem if desired
+          height: 500px;
+          max-width: 80vw;
+          box-shadow: 0 0.3125rem 1.25rem rgba(0, 0, 0, 0.3); // 0 5px 20px
+          position: relative;
+          &__image {
+            width: 80%;
+            height: 80%;
+            box-shadow: 0px 0px 0px 8px #47286b; // 0 5px 20px
+            padding: 4px;
+          }
+
+          h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #000000;
+          }
+
+          p {
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            color: #333;
+          }
+
+          button {
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            background: #444;
+            color: #fff;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            margin-top: 15px;
+
+            &:hover {
+              background: #666;
+            }
           }
         }
       }
