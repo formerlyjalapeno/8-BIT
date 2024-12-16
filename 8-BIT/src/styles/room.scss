@@ -12,12 +12,13 @@
       &__1 {
         position: absolute;
         width: 12rem; // 50px -> 50/16 = 3.125rem
-        height: 16rem;
+        height: 18rem;
         left: 69%;
         top: 12%;
-        background: none; /* Removes any background */
-        border: none; /* Removes default border */
-        color: transparent; /* Makes the text transparent */
+        // comment the 3 below to make visible
+        // background: none; /* Removes any background */
+        // border: none; /* Removes default border */
+        // color: transparent; /* Makes the text transparent */
         cursor: pointer; /* Still shows a pointer on hover if desired */
       }
       &__2 {
@@ -66,7 +67,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
+        z-index: 11;
         &__content {
           background: grey;
           font-family: $font-pixel;
@@ -84,9 +85,10 @@
               top: 37.5%;
               width: 17.5rem;
               height: 15rem;
-              background: none; /* Removes any background */
-              border: none; /* Removes default border */
-              color: transparent; /* Makes the text transparent */
+              // comment the 3 below to make visible
+              // background: none; /* Removes any background */
+              // border: none; /* Removes default border */
+              // color: transparent; /* Makes the text transparent */
               cursor: pointer; /* Still shows a pointer on hover if desired */
             }
           }
