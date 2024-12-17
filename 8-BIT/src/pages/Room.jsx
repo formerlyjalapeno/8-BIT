@@ -71,7 +71,7 @@ const Room = () => {
             key={currentItem.id}
             onClick={() => collectItem(currentItem.id)}
           >
-            Collect {currentItem.name}
+            collect {currentItem.name}
           </button>
         );
       })}
@@ -84,7 +84,7 @@ const Room = () => {
             key={currentQuestion.id}
             onClick={() => openQuestion(currentQuestion.id)}
           >
-            Open {currentQuestion.title}
+            open {currentQuestion.title}
           </button>
         );
       })}
