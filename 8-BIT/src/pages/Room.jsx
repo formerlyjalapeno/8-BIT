@@ -1,26 +1,31 @@
-import { useState } from "react";
-import Items from "../components/Inventory Components/scripts/items";
+import { useState, useEffect } from "react";
+import Items from "../components/Main Room Components/scripts/items";
 import Inventory from "../components/Inventory Components/Inventory";
 import Questions from "../components/Main Room Components/scripts/questions";
 import QuestionOverlay from "../components/Main Room Components/QuestionOverlay";
-import ItemOverlay from "../components/Inventory Components/ItemOverlay";
-
-// Suppose you have these images imported or have URLs:
-// import roomWithItemImage from '../assets/room-with-item.png';
-// import roomWithoutItemImage from '../assets/room-without-item.png';
+import ItemOverlay from "../components/Main Room Components/ItemOverlay";
+import roomsData from "../components/Main Room Components/scripts/roomsData"; // Adjust path as needed
 
 const Room = () => {
-  // IDs of items and questions in the room
-  const [roomItemIds, setRoomItemIds] = useState([0]);
+  const [currentRoomId, setCurrentRoomId] = useState(0);
+  const currentRoom = roomsData.find((r) => r.id === currentRoomId);
+
+  const [roomItemIds, setRoomItemIds] = useState(currentRoom.items);
   const [playerInventory, setPlayerInventory] = useState([]);
-  const [roomQuestionIds] = useState([0]);
+  const [roomQuestionIds, setRoomQuestionIds] = useState(currentRoom.questions);
   const [activeQuestion, setActiveQuestion] = useState(null);
-
-  // Item inspection state
   const [activeItemId, setActiveItemId] = useState(null);
+  const [itemPresent, setItemPresent] = useState(currentRoom.items.length > 0);
 
-  // Track if item is still present to display correct background
-  const [itemPresent, setItemPresent] = useState(true);
+  useEffect(() => {
+    // When room changes, re-initialize states if necessary:
+    setRoomItemIds(currentRoom.items);
+    setRoomQuestionIds(currentRoom.questions);
+    setPlayerInventory([]);
+    setActiveQuestion(null);
+    setActiveItemId(null);
+    setItemPresent(currentRoom.items.length > 0);
+  }, [currentRoomId, currentRoom]);
 
   const collectItem = (id) => {
     const collectedItem = Items.find((itm) => itm.id === id);
@@ -29,8 +34,10 @@ const Room = () => {
       prevRoomIds.filter((itemId) => itemId !== id)
     );
 
-    // Once the item is collected, the room no longer has that item
-    setItemPresent(false);
+    // If no more items in the room, switch to the "item gone" background
+    if (roomItemIds.length <= 1) {
+      setItemPresent(false);
+    }
   };
 
   const openQuestion = (id) => {
@@ -49,20 +56,19 @@ const Room = () => {
     setActiveItemId(null);
   };
 
-  // Choose background image based on whether the item is present
-  // If using imported images:
-  // const backgroundImage = itemPresent ? `url(${roomWithItemImage})` : `url(${roomWithoutItemImage})`;
-
-  // If using a CSS class approach, define two classes in SCSS:
-  // .room__container--item-present { background-image: url(...); }
-  // .room__container--item-gone { background-image: url(...); }
-
   const containerClass = itemPresent
     ? "room__container room__container__item-present"
     : "room__container room__container__item-gone";
 
   return (
-    <main className={containerClass}>
+    <main
+      className={containerClass}
+      style={{
+        backgroundImage: itemPresent
+          ? `url(${currentRoom.backgroundWithItem})`
+          : `url(${currentRoom.backgroundWithoutItem})`,
+      }}
+    >
       {roomItemIds.map((itemId) => {
         const currentItem = Items.find((itm) => itm.id === itemId);
         return (
@@ -95,8 +101,12 @@ const Room = () => {
         questions={Questions}
       />
       <ItemOverlay activeItemId={activeItemId} onClose={closeItemOverlay} />
-
       <Inventory items={playerInventory} onInspectItem={onInspectItem} />
+
+      {/* Example button to switch rooms (in a real game you might do this when the player passes through a door) */}
+      <button onClick={() => setCurrentRoomId((prev) => (prev === 0 ? 1 : 0))}>
+        Go to Next Room
+      </button>
     </main>
   );
 };

@@ -12,7 +12,11 @@ const ItemOverlay = ({ activeItemId, onClose }) => {
     <div className="room__container__item__overlay">
       <div className="room__container__item__overlay__content">
         <h2>{currentItem.name}</h2>
-        <img className="room__container__item__overlay__content__image" src="/binary-pixel.png" alt="" />
+        <img
+          className="room__container__item__overlay__content__image"
+          src="/binary-pixel.png"
+          alt=""
+        />
         <button onClick={onClose}>I'll be using that later.</button>
       </div>
     </div>
