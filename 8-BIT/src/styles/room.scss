@@ -199,17 +199,31 @@
           button {
             font-size: 0.6rem;
             padding: 0.5rem 1rem;
-            background: #5A6DDE;
+            background: #5a6dde;
             color: #fff;
             border: none;
             cursor: pointer;
             margin-top: 15px;
             font-family: $font-pixel;
             &:hover {
-              background: #C51F91;
+              background: #c51f91;
             }
           }
         }
+      }
+    }
+    &__next-button {
+      &__room1 {
+        position: absolute;
+        left: 40%;
+        top: 53.5%;
+        width: 10rem;
+        height: 7rem;
+        // comment the 3 below to make visible
+        background: none; /* Removes any background */
+        border: none; /* Removes default border */
+        color: transparent; /* Makes the text transparent */
+        cursor: pointer; /* Still shows a pointer on hover if desired */
       }
     }
   }
