@@ -1,7 +1,7 @@
-// QuestionOverlay.jsx (overlay component)
-import React, { useState, useEffect, useRef } from "react";
+// QuestionOverlay.jsx
+import React, { useState } from "react";
 
-const QuestionOverlay = ({ activeQuestion, onClose, questions }) => {
+const QuestionOverlay = ({ activeQuestion, onClose, questions, onPuzzleSolved }) => {
   if (activeQuestion === null) return null; // No question selected, no overlay
 
   const currentQuestion = questions.find((q) => q.id === activeQuestion);
@@ -11,13 +11,6 @@ const QuestionOverlay = ({ activeQuestion, onClose, questions }) => {
   const [userAnswer, setUserAnswer] = useState("");
   const [feedback, setFeedback] = useState({ message: "", type: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    if (currentQuestion.requiresAnswer && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [currentQuestion]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,11 +21,13 @@ const QuestionOverlay = ({ activeQuestion, onClose, questions }) => {
         currentQuestion.correctAnswer.toUpperCase()
       ) {
         setFeedback({ message: "Correct!", type: "success" });
-        // Optional: Perform additional actions upon correct answer
+        // Notify Room.jsx that the puzzle is solved
+        onPuzzleSolved(currentQuestion.id);
+        // Automatically close the overlay after a short delay
         setTimeout(() => {
           setFeedback({ message: "", type: "" });
           onClose();
-        }, 1000);
+        }, 1000); // 1-second delay
       } else {
         setFeedback({ message: "Incorrect, please try again.", type: "error" });
         setIsSubmitting(false);
@@ -59,7 +54,6 @@ const QuestionOverlay = ({ activeQuestion, onClose, questions }) => {
         {currentQuestion.requiresAnswer ? (
           <form onSubmit={handleSubmit}>
             <input
-              ref={inputRef}
               type="text"
               value={userAnswer}
               onChange={(e) => setUserAnswer(e.target.value)}
