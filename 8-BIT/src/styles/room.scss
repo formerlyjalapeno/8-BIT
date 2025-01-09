@@ -7,16 +7,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     &__item {
       &__1 {
         position: absolute;
         width: 12rem; // 50px -> 50/16 = 3.125rem
-        height: 16rem;
+        height: 18rem;
         left: 69%;
         top: 12%;
-        background: none; /* Removes any background */
-        border: none; /* Removes default border */
-        color: transparent; /* Makes the text transparent */
+        // comment the 3 below to make visible
+        // background: none; /* Removes any background */
+        // border: none; /* Removes default border */
+        // color: transparent; /* Makes the text transparent */
         cursor: pointer; /* Still shows a pointer on hover if desired */
       }
       &__2 {
@@ -51,8 +53,8 @@
       background-size: contain;
       background-position: center;
     }
-    &__temp-text {
-    }
+    // &__temp-text {
+    // }
 
     &__question {
       &__overlay {
@@ -65,16 +67,56 @@
         display: flex;
         justify-content: center;
         align-items: center;
-
+        z-index: 11;
         &__content {
           background: grey;
+          font-family: $font-pixel;
           padding: 0.25rem 1.25rem;
           text-align: center;
-          width: 300px;
-          height: 500px;
+          width: 400px;
+          height: 750px;
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
+          align-items: flex-start;
+          form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+
+            input {
+              padding: 0.5rem;
+              font-size: 1rem;
+              margin-bottom: 0.5rem;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              width: 80%;
+            }
+
+            button {
+              font-size: 1rem;
+              padding: 0.5rem 1rem;
+              background: #444;
+              color: #fff;
+              border: none;
+              border-radius: 0.25rem;
+              cursor: pointer;
+
+              &:hover {
+                background: #666;
+              }
+            }
+          }
+
+          p.feedback {
+            margin-top: 0.5rem;
+            color: red; // Change to green if needed based on feedback
+          }
+
+          &__close-button {
+            margin-top: 10px;
+          }
           &__question {
             &__1 {
               position: absolute;
@@ -82,9 +124,10 @@
               top: 37.5%;
               width: 17.5rem;
               height: 15rem;
-              background: none; /* Removes any background */
-              border: none; /* Removes default border */
-              color: transparent; /* Makes the text transparent */
+              // comment the 3 below to make visible
+              // background: none; /* Removes any background */
+              // border: none; /* Removes default border */
+              // color: transparent; /* Makes the text transparent */
               cursor: pointer; /* Still shows a pointer on hover if desired */
             }
           }
@@ -154,20 +197,33 @@
           }
 
           button {
-            font-size: 1rem;
+            font-size: 0.6rem;
             padding: 0.5rem 1rem;
-            background: #444;
+            background: #5a6dde;
             color: #fff;
             border: none;
-            border-radius: 0.25rem;
             cursor: pointer;
             margin-top: 15px;
-
+            font-family: $font-pixel;
             &:hover {
-              background: #666;
+              background: #c51f91;
             }
           }
         }
+      }
+    }
+    &__next-button {
+      &__room1 {
+        position: absolute;
+        left: 40%;
+        top: 53.5%;
+        width: 10rem;
+        height: 7rem;
+        // comment the 3 below to make visible
+        background: none; /* Removes any background */
+        border: none; /* Removes default border */
+        color: transparent; /* Makes the text transparent */
+        cursor: pointer; /* Still shows a pointer on hover if desired */
       }
     }
   }
