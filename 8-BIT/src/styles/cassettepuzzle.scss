@@ -1,0 +1,80 @@
+/* 
+  BEM structure: .puzzle-cassette
+  Elements:
+    __complete-message, __stacks, __stack, __cassette-img, __slot
+  Modifiers:
+    --selected for stack, --empty for slot
+
+  THEME:
+   - Background: Black (#000)
+   - Primary text & highlights: Green (#0f0)
+   - Accent color (borders/highlights): Blurple (#7289da)
+*/
+
+.puzzle-cassette {
+  background: transparent; /* Black background */
+  color: #0f0; /* Green text by default */
+  text-align: center;
+  padding: 1rem;
+
+  h2 {
+    text-shadow: 2px 2px #fff;
+  }
+
+  &__complete-message {
+    color: #7289da; /* Blurple for puzzle-solved text */
+    font-weight: bold;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  &__stacks {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  &__stack {
+    background: black;
+    width: 80px;
+    min-height: 320px; /* Increased for up to 7 cassettes */
+    border: 2px solid #68ba2f;
+    border-radius: 4px;
+    padding: 4px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+
+    &--selected {
+      border-color: #7289da; /* highlight in green */
+    }
+  }
+
+  &__cassette-img {
+    width: 60px;
+    height: auto;
+    margin: 3px 0;
+    display: block;
+    border: 1px solid #68ba2f;
+    border-radius: 2px;
+  }
+
+  &__slot {
+    &--empty {
+      width: 60px;
+      height: 20px;
+      margin: 3px 0;
+      color: #0f0; /* green text */
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed #7289da;
+      border-radius: 2px;
+      background-color: #111; /* slightly off-black background */
+    }
+  }
+}
