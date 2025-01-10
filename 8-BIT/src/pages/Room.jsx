@@ -7,6 +7,9 @@ import QuestionOverlay from "../components/Main Room Components/QuestionOverlay"
 import ItemOverlay from "../components/Main Room Components/ItemOverlay";
 import roomsData from "../components/Main Room Components/scripts/roomsData";
 
+// 1) Import your new helper functions
+import { saveRoomState, loadRoomState } from "../utils/storage";
+
 const Room = () => {
   // State to track the current room ID
   const [currentRoomId, setCurrentRoomId] = useState(0);
