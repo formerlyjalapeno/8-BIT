@@ -2,6 +2,7 @@
 .inventory {
   position: absolute;
   display: flex;
+  justify-content: center;
   align-items: flex-end; /* Vertical centering */
   bottom: 0;
   z-index: 10;
