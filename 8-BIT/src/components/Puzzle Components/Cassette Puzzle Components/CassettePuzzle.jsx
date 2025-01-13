@@ -10,8 +10,8 @@ import MagentaImg from "../../../../public/Magenta.png";
 import YellowImg from "../../../../public/Yellow.png";
 
 /**
- * 1) Mapping color strings to imported image files.
- * 2) If you rename your images, update this object to match.
+ * Mapping color strings to imported image files.
+ * If you rename your images, update this object to match.
  */
 const COLOR_IMAGES = {
   Gray: GrayImg,
@@ -24,20 +24,19 @@ const COLOR_IMAGES = {
 // 5 color strings used in the puzzle
 const COLORS = ["Gray", "Red", "Blue", "Magenta", "Yellow"];
 
-// We'll hardcode this puzzle to be for roomId = 1.
-// If you want to pass in a `roomId` from Room.jsx, you could do that instead.
+// Hardcode this puzzle to be for roomId = 1.
 const ROOM_ID = 1;
 
 /**
- * Each stack can hold 7 cassettes total:
- *  - We'll place 6 cassettes initially (1 unique bottom + 5 random)
- *  - leaving 1 empty slot
+ * Each stack can hold 8 cassettes total:
+ *  - 6 cassettes initially (1 unique bottom + 5 random)
+ *  - 2 empty slots
  */
-const STACK_CAPACITY = 7;
+const STACK_CAPACITY = 8;
 const NUM_STACKS = 5;
 
 /**
- * Utility to shuffle an array in place
+ * Utility to shuffle an array
  */
 function shuffleArray(array) {
   return array
@@ -87,7 +86,7 @@ function removePuzzleFromStorage() {
  * Initialize stacks so each has:
  *  - 1 unique bottom cassette
  *  - 5 random top cassettes
- * => total 6 cassettes => 1 empty slot left if capacity=7
+ * => total 6 cassettes => 2 empty slots left if capacity=8
  */
 function initStacksWithUniqueBottom() {
   // We want 5 stacks x 6 cassettes each = 30 total cassettes
@@ -96,7 +95,7 @@ function initStacksWithUniqueBottom() {
   for (let i = 0; i < 6; i++) {
     COLORS.forEach((c) => allCassettes.push(c));
   }
-  // e.g. 6 Gray, 6 Red, 6 Blue, 6 Magenta, 6 Yellow => 30 total
+  // e.g., 6 Gray, 6 Red, 6 Blue, 6 Magenta, 6 Yellow => 30 total
 
   // Shuffle 5 distinct colors for the bottom
   const bottomColors = shuffleArray([...COLORS]);
@@ -111,7 +110,7 @@ function initStacksWithUniqueBottom() {
   // Shuffle again
   allCassettes = shuffleArray(allCassettes);
 
-  // Distribute: 1 unique bottom + 5 random => 6 total cassettes per stack
+  // Distribute: 1 unique bottom + 5 random => 6 cassettes per stack
   const newStacks = [];
   for (let i = 0; i < NUM_STACKS; i++) {
     const topFive = allCassettes.slice(i * 5, i * 5 + 5);
@@ -121,7 +120,7 @@ function initStacksWithUniqueBottom() {
 }
 
 /**
- * Check if puzzle is solved => each stack is empty or uniform color
+ * Check if puzzle is solved => each stack is uniform in color
  */
 function isPuzzleUniform(stacks) {
   return stacks.every((stack) => {
@@ -181,6 +180,8 @@ export default function CassettePuzzle({
    */
   function handleStackClick(stackIndex) {
     if (selectedStackIndex === null) {
+      // Prevent picking up the bottom cassette by ensuring stack has more than 1 cassette
+      if (stacks[stackIndex].length <= 1) return;
       // pick up from top
       if (stacks[stackIndex].length === 0) return;
       setSelectedStackIndex(stackIndex);
@@ -218,62 +219,67 @@ export default function CassettePuzzle({
   }
 
   return (
-    <div className="puzzle-cassette">
-      <h2>Welcome to Hell</h2>
+    <>
+      <div className="puzzle-cassette">
+        <h2>Welcome to Hell</h2>
+
+        {isPuzzleSolved && (
+          <p className="puzzle-cassette__complete-message">Puzzle Solved!</p>
+        )}
+
+        <div className="puzzle-cassette__stacks">
+          {stacks.map((stack, idx) => {
+            const isSelected = idx === selectedStackIndex;
+            const stackClass = `puzzle-cassette__stack${
+              isSelected ? " puzzle-cassette__stack--selected" : ""
+            }`;
+
+            return (
+              <div
+                key={idx}
+                className={stackClass}
+                onClick={() => handleStackClick(idx)}
+              >
+                {stack.map((color, i2) => (
+                  <img
+                    key={i2}
+                    src={COLOR_IMAGES[color]}
+                    alt={color}
+                    className="puzzle-cassette__cassette-img"
+                  />
+                ))}
+                {/* Render empty slots */}
+                {stack.length < STACK_CAPACITY && (
+                  <>
+                    {Array.from({ length: STACK_CAPACITY - stack.length }).map(
+                      (_, emptyIdx) => (
+                        <div
+                          key={emptyIdx}
+                          className={
+                            emptyIdx === 0
+                              ? "puzzle-cassette__slot puzzle-cassette__slot--empty"
+                              : "puzzle-cassette__slot"
+                          }
+                        >
+                          {/* Only show "Empty" on the first empty slot */}
+                          {emptyIdx === 0 ? "Empty" : ""}
+                        </div>
+                      )
+                    )}
+                  </>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <button
         type="button"
         onClick={handleResetPuzzle}
-        style={{
-          position: "absolute",
-          bottom: "1rem",
-          right: "7.5rem",
-          background: "red",
-          color: "white",
-          padding: "0.5rem",
-          border: "none",
-          borderRadius: "0.25rem",
-          cursor: "pointer",
-          zIndex: 9999, // So it stays on top of other elements
-        }}
+        className="puzzle-cassette__reset-button"
       >
         PUZZLE RESET
       </button>
-
-      {isPuzzleSolved && (
-        <p className="puzzle-cassette__complete-message">Puzzle Solved!</p>
-      )}
-
-      <div className="puzzle-cassette__stacks">
-        {stacks.map((stack, idx) => {
-          const isSelected = idx === selectedStackIndex;
-          const stackClass = `puzzle-cassette__stack${
-            isSelected ? " puzzle-cassette__stack--selected" : ""
-          }`;
-
-          return (
-            <div
-              key={idx}
-              className={stackClass}
-              onClick={() => handleStackClick(idx)}
-            >
-              {stack.map((color, i2) => (
-                <img
-                  key={i2}
-                  src={COLOR_IMAGES[color]}
-                  alt={color}
-                  className="puzzle-cassette__cassette-img"
-                />
-              ))}
-              {/* If capacity not filled, show an empty slot */}
-              {stack.length < STACK_CAPACITY && (
-                <div className="puzzle-cassette__slot puzzle-cassette__slot--empty">
-                  Empty
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    </>
   );
 }
