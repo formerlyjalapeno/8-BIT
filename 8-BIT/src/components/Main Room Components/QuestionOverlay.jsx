@@ -48,7 +48,8 @@ const QuestionOverlay = ({ activeQuestion, onClose, questions, onPuzzleSolved })
       tabIndex={-1} // Make div focusable to capture key events
     >
       <div className="room__container__question__overlay__content">
-        <h2>{currentQuestion.title}</h2>
+        <h2>READY TO ANSWER?</h2>
+        <h3>{currentQuestion.title}</h3>
         <p>{currentQuestion.text}</p>
 
         {currentQuestion.requiresAnswer ? (
@@ -61,16 +62,16 @@ const QuestionOverlay = ({ activeQuestion, onClose, questions, onPuzzleSolved })
               required
             />
             <div className="buttons-container">
-              <button type="submit" disabled={isSubmitting}>
-                Submit
-              </button>
               <button
                 type="button"
                 onClick={onClose}
                 className="close-button"
                 disabled={isSubmitting}
               >
-                Close
+                NEED MORE TIME...
+              </button>
+              <button type="submit" disabled={isSubmitting}>
+                SUBMIT?
               </button>
             </div>
           </form>

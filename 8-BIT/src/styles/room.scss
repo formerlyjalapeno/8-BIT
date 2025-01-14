@@ -1,5 +1,4 @@
 // ROOM
-
 .room {
   &__container {
     height: 100vh;
@@ -14,6 +13,7 @@
         width: 12rem; // 50px -> 50/16 = 3.125rem
         height: 18rem;
         left: 69%;
+        opacity: 0;
         top: 12%;
         // comment the 3 below to make visible
         // background: none; /* Removes any background */
@@ -69,48 +69,54 @@
         align-items: center;
         z-index: 11;
         &__content {
-          background: grey;
+          background: rgb(255, 255, 255);
           font-family: $font-pixel;
-          padding: 0.25rem 1.25rem;
-          text-align: center;
-          width: 400px;
-          height: 750px;
+          padding: 30px;
+          width: 40vw;
+          color: black;
           display: flex;
-          justify-content: center;
+          flex-direction: column;
           flex-wrap: wrap;
           align-items: flex-start;
+
           form {
             display: flex;
             flex-direction: column;
-            align-items: center;
             margin-top: 1rem;
 
             input {
               padding: 0.5rem;
-              font-size: 1rem;
-              margin-bottom: 0.5rem;
-              border: 1px solid #ccc;
-              border-radius: 4px;
-              width: 80%;
+              font-size: 0.6rem;
+              font-family: $font-pixel;
+              margin-bottom: 1rem;
+              border: 1px solid #000000;
+              width: 36.5vw;
+            }
+
+            .buttons-container {
+              margin: 0.5rem 0vw 1rem 11rem;
             }
 
             button {
-              font-size: 1rem;
-              padding: 0.5rem 1rem;
-              background: #444;
-              color: #fff;
+              font-size: 0.7rem;
+              text-align: start;
+              margin-right: 1rem;
+              padding: 0.7rem 3rem 0.7rem 1rem;
+              background: #000000;
+              color: #ffffff;
+              font-family: $font-pixel;
               border: none;
-              border-radius: 0.25rem;
               cursor: pointer;
 
               &:hover {
-                background: #666;
+                background: #c51f91;
               }
             }
           }
 
           p.feedback {
-            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            margin: 0;
             color: red; // Change to green if needed based on feedback
           }
 
@@ -121,6 +127,7 @@
             &__1 {
               position: absolute;
               left: 26%;
+              opacity: 0;
               top: 37.5%;
               width: 17.5rem;
               height: 15rem;
@@ -132,11 +139,19 @@
             }
           }
           h2 {
-            color: grey;
+            background: $gradient-main;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          h3 {
+            font-size: 0.9rem;
+            font-weight: bolder;
           }
 
           p {
-            font-size: $font-size-md;
+            font-size: 1rem;
+            margin: 1rem 0rem;
           }
 
           button {
