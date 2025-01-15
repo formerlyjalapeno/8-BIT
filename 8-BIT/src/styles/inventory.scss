@@ -1,12 +1,7 @@
 // INVENTORY
 .inventory {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end; /* Vertical centering */
-  bottom: 0;
-  right: 35%;
-  z-index: 10;
+  margin-top: 80vh;
+
   &__container {
     width: 640px;
     height: 124px;
@@ -17,6 +12,7 @@
     gap: 2.5rem; // 40px -> 40/16 = 2.5rem
     background-image: url(/inventory-background.png);
     margin: 20px;
+
     &__slot {
       width: 4.6875rem; // 75px -> 75/16 = 4.6875rem
       height: 4.6875rem; // 75px -> 4.6875rem
@@ -24,13 +20,16 @@
       justify-content: center;
       align-items: center;
       background-image: url(/slot.png);
+
       &:hover {
         background-image: url(/slot-hover.png);
       }
+
       p {
         z-index: 1;
       }
-      &__0 {        
+
+      &__0 {
         width: 75%;
         height: 75%;
       }
