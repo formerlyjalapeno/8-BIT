@@ -68,7 +68,7 @@ const QuestionOverlay = ({ activeQuestion, onClose, questions, onPuzzleSolved })
                 className="close-button"
                 disabled={isSubmitting}
               >
-                NEED MORE TIME...
+                MORE TIME...
               </button>
               <button type="submit" disabled={isSubmitting}>
                 SUBMIT?
