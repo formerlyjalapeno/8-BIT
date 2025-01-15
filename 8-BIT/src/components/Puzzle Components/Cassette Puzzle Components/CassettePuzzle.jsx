@@ -179,6 +179,9 @@ export default function CassettePuzzle({
    * Two-click logic: pick up top from one stack, drop onto another (if capacity)
    */
   function handleStackClick(stackIndex) {
+    // **Prevent any interaction if the puzzle is solved**
+    if (isPuzzleSolved) return;
+
     if (selectedStackIndex === null) {
       // Prevent picking up the bottom cassette by ensuring stack has more than 1 cassette
       if (stacks[stackIndex].length <= 1) return;
@@ -226,7 +229,12 @@ export default function CassettePuzzle({
       if (stack.length === 0) return stack;
       const bottomCassette = stack[0]; // First cassette is the bottom cassette
       // Fill the stack with the bottom cassette
-      return Array.from({ length: STACK_CAPACITY - 2 }, () => bottomCassette);
+      // Keep the bottom cassette and replace the rest with the same color up to STACK_CAPACITY - 2
+      // because there are 2 empty slots
+      return [
+        bottomCassette,
+        ...Array.from({ length: STACK_CAPACITY - 2 }, () => bottomCassette),
+      ];
     });
     setStacks(solvedStacks);
     setIsPuzzleSolved(true);
@@ -235,7 +243,11 @@ export default function CassettePuzzle({
 
   return (
     <>
-      <div className="puzzle-cassette">
+      <div
+        className={`puzzle-cassette ${
+          isPuzzleSolved ? "puzzle-cassette--solved" : ""
+        }`}
+      >
         <h2>Welcome to Hell</h2>
 
         {isPuzzleSolved && (
