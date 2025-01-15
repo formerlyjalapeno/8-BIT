@@ -94,6 +94,8 @@
             }
 
             .buttons-container {
+              display: flex;
+              flex-direction: row;
               margin: 0.5rem 0vw 1rem 11rem;
             }
 
@@ -106,6 +108,7 @@
               color: #ffffff;
               font-family: $font-pixel;
               border: none;
+              border-radius: 0;
               cursor: pointer;
 
               &:hover {
