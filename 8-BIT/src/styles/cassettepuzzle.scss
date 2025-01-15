@@ -1,7 +1,7 @@
 /* 
   BEM structure: .puzzle-cassette
   Elements:
-    __complete-message, __stacks, __stack, __cassette-img, __slot, __reset-button
+    __complete-message, __stacks, __stack, __cassette-img, __slot, __reset-button, __instant-finish-button, __buttons
   Modifiers:
     --selected for stack, --empty for slot
 */
@@ -23,17 +23,36 @@
     font-size: 1.2rem;
   }
 
+  &__buttons {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+
   &__reset-button {
     position: absolute;
     bottom: 1rem;
-    right: 7.5rem;
+    right: 8rem;
     background: red;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     border: none;
     border-radius: 0.25rem;
     cursor: pointer;
-    z-index: 9999; /* Ensure it stays on top */
+    z-index: 9999;
+  }
+  &__instant-finish-button {
+    position: absolute;
+    bottom: 1rem;
+    right: 16.5rem;
+    background: red;
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    z-index: 9999;
 
     &:hover {
       background: darkred;

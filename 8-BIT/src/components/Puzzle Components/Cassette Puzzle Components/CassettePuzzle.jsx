@@ -218,6 +218,21 @@ export default function CassettePuzzle({
     setSelectedStackIndex(null);
   }
 
+  /**
+   * Instant Finish puzzle => solve the puzzle immediately
+   */
+  function handleInstantFinish() {
+    const solvedStacks = stacks.map((stack) => {
+      if (stack.length === 0) return stack;
+      const bottomCassette = stack[0]; // First cassette is the bottom cassette
+      // Fill the stack with the bottom cassette
+      return Array.from({ length: STACK_CAPACITY - 2 }, () => bottomCassette);
+    });
+    setStacks(solvedStacks);
+    setIsPuzzleSolved(true);
+    if (onPuzzleCompletion) onPuzzleCompletion();
+  }
+
   return (
     <>
       <div className="puzzle-cassette">
@@ -273,13 +288,22 @@ export default function CassettePuzzle({
           })}
         </div>
       </div>
-      <button
-        type="button"
-        onClick={handleResetPuzzle}
-        className="puzzle-cassette__reset-button"
-      >
-        PUZZLE RESET
-      </button>
+      <div className="puzzle-cassette__buttons">
+        <button
+          type="button"
+          onClick={handleResetPuzzle}
+          className="puzzle-cassette__reset-button"
+        >
+          PUZZLE RESET
+        </button>
+        <button
+          type="button"
+          onClick={handleInstantFinish}
+          className="puzzle-cassette__instant-finish-button"
+        >
+          INSTANT FINISH
+        </button>
+      </div>
     </>
   );
 }

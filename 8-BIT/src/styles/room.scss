@@ -225,6 +225,14 @@
         // color: transparent; /* Makes the text transparent */
         cursor: pointer; /* Still shows a pointer on hover if desired */
       }
+      &__room2 {
+        position: absolute;
+        left: 45%;
+        top: 75%;
+        width: 10vw;
+        height: 6vh;
+        cursor: pointer; /* Still shows a pointer on hover if desired */
+      }
     }
   }
 }
