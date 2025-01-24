@@ -18,6 +18,16 @@ const roomsData = [
     questions: [], // If you have no questions for Room 2, set this empty
     class: "room__container__next-button__room2",
   },
+  {
+    id: 2,
+    // Use the same image for "with item" and "without item,"
+    // because there are no items in Room 2
+    backgroundWithItem: "/room-3.png",
+    backgroundWithoutItem: "/room-3.png",
+    items: [], // No items in Room 3
+    questions: [], // If you have no questions for Room 3, set this empty
+    class: "room__container__next-button__room3",
+  },
   // Additional rooms...
 ];
   

@@ -5,6 +5,7 @@ import QuestionOverlay from "../../Main Room Components/QuestionOverlay";
 import ItemOverlay from "../../Main Room Components/ItemOverlay";
 import Inventory from "../../Inventory Components/Inventory";
 import "../../../styles/binarypuzzle.scss";
+import { useState } from "react";
 
 /**
  * PROPS we expect from Room.jsx:
@@ -44,6 +45,14 @@ export default function BinaryPuzzle(props) {
     closeQuestion,
     onInspectItem,
     closeItemOverlay,
+    Hover1Enter,
+    Hover1Leave,
+    Hover2Enter,
+    Hover2Leave,
+    Hover3Enter,
+    Hover3Leave,
+    Hover4Enter,
+    Hover4Leave,
   } = props;
 
   // If puzzle is solved, we won't show question buttons;
@@ -70,12 +79,16 @@ export default function BinaryPuzzle(props) {
       {!isPuzzleSolved &&
         roomQuestionIds.map((questionId) => {
           const q = Questions.find((qq) => qq.id === questionId);
+          q.enter = Hover4Enter;
+          q.leave = Hover4Leave;
           return (
             <button
               className={q.class}
               key={q.id}
               onClick={() => setActiveQuestion(q.id)}
               aria-label={`Open ${q.title}`}
+              onMouseEnter={q.enter}
+              onMouseLeave={q.leave}
             >
               Open {q.title}
             </button>
@@ -95,6 +108,27 @@ export default function BinaryPuzzle(props) {
         }}
       />
       <ItemOverlay activeItemId={activeItemId} onClose={closeItemOverlay} />
+
+      <div
+        className="room__container__hover__1"
+        onMouseEnter={Hover1Enter}
+        onMouseLeave={Hover1Leave}
+      />
+      <div
+        className="room__container__hover__2"
+        onMouseEnter={Hover2Enter}
+        onMouseLeave={Hover2Leave}
+      />
+      <div
+        className="room__container__hover__3"
+        onMouseEnter={Hover3Enter}
+        onMouseLeave={Hover3Leave}
+      />
+      <div
+        className="room__container__hover__4"
+        onMouseEnter={Hover4Enter}
+        onMouseLeave={Hover4Leave}
+      />
 
       {/* GLOBAL INVENTORY */}
       <Inventory items={playerInventory} onInspectItem={onInspectItem} />

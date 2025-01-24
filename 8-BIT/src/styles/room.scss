@@ -1,12 +1,50 @@
 // ROOM
 .room {
-
   &__container {
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &__hover {
+      &__1 {
+        width: 10vw;
+        height: 10vw;
+        // background: blue;
+        position: absolute;
+        left: 62.5vw;
+        top: 40vh;
+        z-index: 1;
+      }
+      &__2 {
+        width: 8.2vw;
+        height: 6.5vw;
+        // background: green;
+        position: absolute;
+        left: 51.5vw;
+        top: 53.5vh;
+        z-index: 1;
+      }
+      &__3 {
+        width: 8vw;
+        height: 5.7vw;
+        // background: red;
+        position: absolute;
+        left: 40.2vw;
+        top: 53.5vh;
+        z-index: 1;
+      }
+      &__4 {
+        width: 12vw;
+        height: 22vh;
+        // background: purple;
+        position: absolute;
+        left: 26%;
+        top: 37.5%;
+        z-index: 1;
+      }
+    }
 
     &__item {
       &__1 {
@@ -17,9 +55,9 @@
         opacity: 0;
         top: 12%;
         // comment the 3 below to make visible
-        background: none; /* Removes any background */
-        border: none; /* Removes default border */
-        color: transparent; /* Makes the text transparent */
+        // background: none; /* Removes any background */
+        // border: none; /* Removes default border */
+        // color: transparent; /* Makes the text transparent */
         cursor: pointer; /* Still shows a pointer on hover if desired */
       }
       &__2 {
@@ -50,6 +88,44 @@
 
     &__item-gone {
       background-image: url("/room-1-without-item.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    &__hover1-background-image {
+      background-image: url("/room1_hoverframe1.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    &__hover2-background-image {
+      background-image: url("/room1_hoverframe2.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    &__hover3-background-image {
+      background-image: url("/room1_hoverframe3.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    &__hover4-background-image {
+      background-image: url("/room1_hoverframe4.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+
+    &__room2 {
+      background-image: url("/room-2.png");
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
+    &__finito-background-image {
+      background-image: url("/room1_finito.png");
       background-repeat: no-repeat;
       background-size: contain;
       background-position: center;
@@ -133,8 +209,9 @@
               left: 26%;
               opacity: 0;
               top: 37.5%;
-              width: 17.5rem;
-              height: 15rem;
+              width: 12vw;
+              height: 22vh;
+              z-index: 5;
               // comment the 3 below to make visible
               background: none; /* Removes any background */
               border: none; /* Removes default border */
@@ -243,6 +320,7 @@
         background: none;
         color: transparent; /* Makes the text transparent */
         cursor: pointer; /* Still shows a pointer on hover if desired */
+        z-index: 2;
       }
       &__room2 {
         position: absolute;
@@ -262,6 +340,20 @@
           background-size: cover;
           background-repeat: no-repeat;
         }
+      }
+      &__room3 {
+        position: absolute;
+        left: 45%;
+        top: 75%;
+        width: 10vw;
+        height: 6vh;
+        // border: none; /* Removes default border */
+        // color: transparent; /* Makes the text transparent */
+        // background: none;
+        // background-image: url();
+        // background-size: cover;
+        // background-repeat: no-repeat;
+        cursor: pointer; /* Still shows a pointer on hover if desired */
       }
     }
   }

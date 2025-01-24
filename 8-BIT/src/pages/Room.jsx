@@ -14,6 +14,7 @@ import DevResetButton from "../components/DevResetButton.jsx";
 // Puzzles
 import BinaryPuzzle from "../components/Puzzle Components/Binary Puzzle Components/BinaryPuzzle";
 import CassettePuzzle from "../components/Puzzle Components/Cassette Puzzle Components/CassettePuzzle";
+import BlackJackPuzzle from "../components/Puzzle Components/Blackjack Puzzle Components/BlackJackPuzzle.jsx";
 
 import Items from "../components/Main Room Components/scripts/items";
 
@@ -102,19 +103,94 @@ const Room = () => {
     closeQuestion();
   };
 
-  // Overlays
+  // 11) Overlays
   const openQuestion = (id) => setActiveQuestion(id);
   const closeQuestion = () => setActiveQuestion(null);
   const onInspectItem = (id) => setActiveItemId(id);
   const closeItemOverlay = () => setActiveItemId(null);
 
-  // Background logic
-  const containerClass = itemPresent
-    ? "room__container room__container__item-present"
-    : "room__container room__container__item-gone";
+  // 12) Preload images
+  const preloadImages = (urls) => {
+    urls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+  };
+
+  useEffect(() => {
+    preloadImages([
+      "/room-1-with-item.png",
+      "/room-1-without-item.png",
+      "/room1_hoverframe1.png",
+      "/room1_hoverframe2.png",
+      "/room1_hoverframe3.png",
+      "/room1_hoverframe4.png",
+      "/room-2.png",
+      "/room1_finito.png",
+    ]);
+  }, []);
+
+  // 13) Hover logic
+  const [Hover1, setHover1] = useState(false);
+  const [Hover2, setHover2] = useState(false);
+  const [Hover3, setHover3] = useState(false);
+  const [Hover4, setHover4] = useState(false);
+
+  const handleHover1MouseEnter = () => {
+    if (!itemPresent && !isPuzzleSolved) setHover1(true);
+  };
+
+  const handleHover1MouseLeave = () => {
+    setHover1(false);
+  };
+
+  const handleHover2MouseEnter = () => {
+    if (!itemPresent && !isPuzzleSolved) setHover2(true);
+  };
+
+  const handleHover2MouseLeave = () => {
+    setHover2(false);
+  };
+
+  const handleHover3MouseEnter = () => {
+    if (!itemPresent && !isPuzzleSolved) setHover3(true);
+  };
+
+  const handleHover3MouseLeave = () => {
+    setHover3(false);
+  };
+
+  const handleHover4MouseEnter = () => {
+    if (!itemPresent && !isPuzzleSolved) setHover4(true);
+  };
+
+  const handleHover4MouseLeave = () => {
+    setHover4(false);
+  };
+
+  // 14) Background logic
+  const containerClass =
+    (currentRoomId === 0) & isPuzzleSolved
+      ? "room__container room__container__finito-background-image"
+      : (currentRoomId === 0) & Hover1
+      ? "room__container room__container__hover1-background-image"
+      : (currentRoomId === 0) & Hover2
+      ? "room__container room__container__hover2-background-image"
+      : (currentRoomId === 0) & Hover3
+      ? "room__container room__container__hover3-background-image"
+      : (currentRoomId === 0) & Hover4
+      ? "room__container room__container__hover4-background-image"
+      : (currentRoomId === 2)
+      ? "room__container"
+      : currentRoomId === 1
+      ? "room__container room__container__room2"
+      : (currentRoomId === 0) & itemPresent
+      ? "room__container room__container__item-present"
+      : "room__container room__container__item-gone";
+
   const { class: nextRoomButtonClass } = currentRoom;
 
-  // 13) goToNextRoom
+  // 15) goToNextRoom
   const goToNextRoom = () => {
     const nextRoomId = currentRoomId + 1;
     const nextExists = roomsData.some((rr) => rr.id === nextRoomId);
@@ -128,16 +204,9 @@ const Room = () => {
     setCurrentRoomId(nextRoomId);
   };
 
-  // 14) RENDER
+  // 16) RENDER
   return (
-    <main
-      className={containerClass}
-      style={{
-        backgroundImage: itemPresent
-          ? `url(${currentRoom.backgroundWithItem})`
-          : `url(${currentRoom.backgroundWithoutItem})`,
-      }}
-    >
+    <main className={containerClass}>
       {/* If we are in Room 0 => Binary Puzzle */}
       {currentRoomId === 0 && (
         <BinaryPuzzle
@@ -160,6 +229,14 @@ const Room = () => {
           closeQuestion={closeQuestion}
           onInspectItem={onInspectItem}
           closeItemOverlay={closeItemOverlay}
+          Hover1Enter={handleHover1MouseEnter}
+          Hover1Leave={handleHover1MouseLeave}
+          Hover2Enter={handleHover2MouseEnter}
+          Hover2Leave={handleHover2MouseLeave}
+          Hover3Enter={handleHover3MouseEnter}
+          Hover3Leave={handleHover3MouseLeave}
+          Hover4Enter={handleHover4MouseEnter}
+          Hover4Leave={handleHover4MouseLeave}
         />
       )}
 
@@ -170,6 +247,11 @@ const Room = () => {
           setIsPuzzleSolved={setIsPuzzleSolved}
           onPuzzleCompletion={handlePuzzleCompletion}
         />
+      )}
+ 
+      {/* If we are in Room 2 => Blackjack Puzzle */}
+      {currentRoomId === 2 && (
+        <BlackJackPuzzle onWin={() => setIsPuzzleSolved(true)} />
       )}
 
       {/* Show "Go to Next Room" if puzzle is solved */}

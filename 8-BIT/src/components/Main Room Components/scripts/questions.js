@@ -4,9 +4,12 @@ const Questions = [
     id: 0,
     title: "QUESTION NO.1:",
     text: "01001110 01001001 01001110 01010100 01000101 01001110 01000100 01001111",
-    class: "room__container__question__overlay__content__question__1",
+    class:
+      "room__container__question__overlay__content__question__1",
     requiresAnswer: true,
     correctAnswer: "NINTENDO",
+    enter: "",
+    leave: ""
   },
   {
     id: 1,
