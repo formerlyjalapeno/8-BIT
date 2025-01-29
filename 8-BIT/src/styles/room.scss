@@ -1,360 +1,440 @@
-// ROOM
-.room {
-  &__container {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &__hover {
-      &__1 {
-        width: 10vw;
-        height: 10vw;
-        // background: blue;
-        position: absolute;
-        left: 62.5vw;
-        top: 40vh;
-        z-index: 1;
+/* ──────────────────────────────────────────────────────────────────────────────
+   ROOM
+   ────────────────────────────────────────────────────────────────────────────── */
+   .room {
+    &__container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      &__hover {
+        &__1 {
+          width: 10vw;
+          height: 10vw;
+          /* background: blue; */
+          position: absolute;
+          left: 62.5vw;
+          top: 40vh;
+          z-index: 1;
+        }
+        &__2 {
+          width: 8.2vw;
+          height: 6.5vw;
+          /* background: green; */
+          position: absolute;
+          left: 51.5vw;
+          top: 53.5vh;
+          z-index: 1;
+        }
+        &__3 {
+          width: 8vw;
+          height: 5.7vw;
+          /* background: red; */
+          position: absolute;
+          left: 40.2vw;
+          top: 53.5vh;
+          z-index: 1;
+        }
+        &__4 {
+          width: 12vw;
+          height: 22vh;
+          /* background: purple; */
+          position: absolute;
+          left: 26%;
+          top: 37.5%;
+          z-index: 1;
+        }
       }
-      &__2 {
-        width: 8.2vw;
-        height: 6.5vw;
-        // background: green;
-        position: absolute;
-        left: 51.5vw;
-        top: 53.5vh;
-        z-index: 1;
+  
+      &__item {
+        &__1 {
+          position: absolute;
+          width: 12rem;
+          height: 18rem;
+          left: 69%;
+          opacity: 0;
+          top: 12%;
+          /* comment the 3 below to make visible
+             background: none;
+             border: none;
+             color: transparent; */
+          cursor: pointer;
+        }
+        &__2 {
+          position: absolute;
+          width: 4.6875rem; /* 75px */
+          left: 3.125rem;   /* 50px */
+          top: 0;
+        }
+        &__3 {
+          position: absolute;
+          width: 3.125rem; /* 50px */
+          left: 7.5rem;    /* 120px */
+          top: 0;
+        }
+        &__4 {
+          position: absolute;
+          width: 3.125rem; /* 50px */
+          left: 20rem;     /* 320px */
+          top: 0;
+        }
       }
-      &__3 {
-        width: 8vw;
-        height: 5.7vw;
-        // background: red;
-        position: absolute;
-        left: 40.2vw;
-        top: 53.5vh;
-        z-index: 1;
+  
+      &__item-present {
+        background-image: url("/room-1-with-item.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
-      &__4 {
-        width: 12vw;
-        height: 22vh;
-        // background: purple;
-        position: absolute;
-        left: 26%;
-        top: 37.5%;
-        z-index: 1;
+  
+      &__item-gone {
+        background-image: url("/room-1-without-item.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
-    }
-
-    &__item {
-      &__1 {
-        position: absolute;
-        width: 12rem; // 50px -> 50/16 = 3.125rem
-        height: 18rem;
-        left: 69%;
-        opacity: 0;
-        top: 12%;
-        // comment the 3 below to make visible
-        // background: none; /* Removes any background */
-        // border: none; /* Removes default border */
-        // color: transparent; /* Makes the text transparent */
-        cursor: pointer; /* Still shows a pointer on hover if desired */
+  
+      &__hover1-background-image {
+        background-image: url("/room1_hoverframe1.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
-      &__2 {
-        position: absolute;
-        width: 4.6875rem; // 75px -> 4.6875rem
-        left: 3.125rem; // 50px -> 3.125rem
-        top: 0;
+      &__hover2-background-image {
+        background-image: url("/room1_hoverframe2.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
-      &__3 {
-        position: absolute;
-        width: 3.125rem; // 50px -> 3.125rem
-        left: 7.5rem;
-        top: 0;
+      &__hover3-background-image {
+        background-image: url("/room1_hoverframe3.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
-      &__4 {
-        position: absolute;
-        width: 3.125rem; // 50px -> 3.125rem
-        left: 20rem;
-        top: 0;
+      &__hover4-background-image {
+        background-image: url("/room1_hoverframe4.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
       }
-    }
-    &__item-present {
-      background-image: url("/room-1-with-item.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    &__item-gone {
-      background-image: url("/room-1-without-item.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    &__hover1-background-image {
-      background-image: url("/room1_hoverframe1.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    &__hover2-background-image {
-      background-image: url("/room1_hoverframe2.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    &__hover3-background-image {
-      background-image: url("/room1_hoverframe3.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    &__hover4-background-image {
-      background-image: url("/room1_hoverframe4.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-
-    &__room2 {
-      background-image: url("/room-2.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    &__finito-background-image {
-      background-image: url("/room1_finito.png");
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-position: center;
-    }
-    // &__temp-text {
-    // }
-
-    &__question {
-      &__overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 11;
-        &__content {
-          background: rgb(255, 255, 255);
-          font-family: $font-pixel;
-          padding: 30px;
-          width: 40vw;
-          color: black;
+  
+      &__room2 {
+        background-image: url("/room-2.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+  
+      &__finito-background-image {
+        background-image: url("/room1_finito.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+  
+      &__question {
+        &__overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.7);
           display: flex;
-          flex-direction: column;
-          flex-wrap: wrap;
-          align-items: flex-start;
-
-          form {
+          justify-content: center;
+          align-items: center;
+          z-index: 11;
+  
+          &__content {
+            background: rgb(255, 255, 255);
+            font-family: $font-pixel; /* or your pixel font variable */
+            padding: 30px;
+            width: 40vw;
+            color: black;
             display: flex;
             flex-direction: column;
-            margin-top: 1rem;
-
-            input {
-              padding: 0.5rem;
-              font-size: 0.6rem;
-              font-family: $font-pixel;
-              margin-bottom: 1rem;
-              border: 1px solid #000000;
-              width: 36.5vw;
-            }
-
-            .buttons-container {
+            flex-wrap: wrap;
+            align-items: flex-start;
+  
+            form {
               display: flex;
-              flex-direction: row;
-              margin: 0.5rem 0vw 1rem 11rem;
+              flex-direction: column;
+              margin-top: 1rem;
+  
+              input {
+                padding: 0.5rem;
+                font-size: 0.6rem;
+                font-family: $font-pixel;
+                margin-bottom: 1rem;
+                border: 1px solid #000000;
+                width: 36.5vw;
+              }
+  
+              .buttons-container {
+                display: flex;
+                flex-direction: row;
+                margin: 0.5rem 0 1rem 11rem;
+              }
+  
+              button {
+                font-size: 0.7rem;
+                text-align: start;
+                margin-right: 1rem;
+                padding: 0.7rem 3rem 0.7rem 1rem;
+                background: #000000;
+                color: #ffffff;
+                font-family: $font-pixel;
+                border: none;
+                border-radius: 0;
+                cursor: pointer;
+  
+                &:hover {
+                  background: #c51f91;
+                }
+              }
             }
-
-            button {
+  
+            p.feedback {
               font-size: 0.7rem;
-              text-align: start;
-              margin-right: 1rem;
-              padding: 0.7rem 3rem 0.7rem 1rem;
-              background: #000000;
-              color: #ffffff;
-              font-family: $font-pixel;
+              margin: 0;
+              color: red; /* or green if needed */
+            }
+  
+            &__close-button {
+              margin-top: 10px;
+            }
+            &__question {
+              &__1 {
+                position: absolute;
+                left: 26%;
+                opacity: 0;
+                top: 37.5%;
+                width: 12vw;
+                height: 22vh;
+                z-index: 5;
+                /* comment the 3 below to make visible
+                   background: none;
+                   border: none;
+                   color: transparent; */
+                cursor: pointer;
+              }
+            }
+            h2 {
+              background: $gradient-main; /* example gradient variable */
+              -webkit-background-clip: text;
+              background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
+            h3 {
+              font-size: 0.9rem;
+              font-weight: bolder;
+            }
+            p {
+              font-size: 1rem;
+              margin: 1rem 0;
+            }
+            button {
+              font-size: 1rem;
+              padding: 0.5rem 1rem;
+              background: #444;
+              color: #fff;
               border: none;
-              border-radius: 0;
+              border-radius: 0.25rem;
               cursor: pointer;
-
+  
+              &:hover {
+                background: #666;
+              }
+            }
+          }
+        }
+      }
+  
+      &__item {
+        &__overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.7);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+  
+          &__content {
+            background: #000000;
+            padding: 0.5rem 1.25rem 1.75rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            width: 400px;
+            height: 500px;
+            max-width: 80vw;
+            box-shadow: 0 0.3125rem 1.25rem rgba(0, 0, 0, 0.3);
+            position: relative;
+  
+            &__image {
+              width: 80%;
+              height: 80%;
+              box-shadow: 0 0 0 8px #47286b;
+              padding: 4px;
+            }
+            h2 {
+              font-size: 1.5rem;
+              margin-bottom: 1rem;
+              color: #000000;
+            }
+            p {
+              margin-bottom: 1rem;
+              line-height: 1.5;
+              color: #333;
+            }
+            button {
+              font-size: 0.6rem;
+              padding: 0.5rem 1rem;
+              background: #5a6dde;
+              color: #fff;
+              border: none;
+              cursor: pointer;
+              margin-top: 15px;
+              font-family: $font-pixel;
               &:hover {
                 background: #c51f91;
               }
             }
           }
-
-          p.feedback {
-            font-size: 0.7rem;
-            margin: 0;
-            color: red; // Change to green if needed based on feedback
-          }
-
-          &__close-button {
-            margin-top: 10px;
-          }
-          &__question {
-            &__1 {
-              position: absolute;
-              left: 26%;
-              opacity: 0;
-              top: 37.5%;
-              width: 12vw;
-              height: 22vh;
-              z-index: 5;
-              // comment the 3 below to make visible
-              background: none; /* Removes any background */
-              border: none; /* Removes default border */
-              color: transparent; /* Makes the text transparent */
-              cursor: pointer; /* Still shows a pointer on hover if desired */
-            }
-          }
-          h2 {
-            background: $gradient-main;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-          }
-          h3 {
-            font-size: 0.9rem;
-            font-weight: bolder;
-          }
-
-          p {
-            font-size: 1rem;
-            margin: 1rem 0rem;
-          }
-
-          button {
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            background: #444;
-            color: #fff;
-            border: none;
-            border-radius: 0.25rem;
-            cursor: pointer;
-
-            &:hover {
-              background: #666;
-            }
-          }
         }
       }
-    }
-    &__item {
-      &__overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.7);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-        &__content {
-          background: #000000;
-          padding: 0.5rem 1.25rem 1.75rem; // 20px if converting to rem
-          border-radius: 0.5rem; // 8px in rem
-          text-align: center;
-          width: 400px; // or use rem if desired
-          height: 500px;
-          max-width: 80vw;
-          box-shadow: 0 0.3125rem 1.25rem rgba(0, 0, 0, 0.3); // 0 5px 20px
-          position: relative;
-          &__image {
-            width: 80%;
-            height: 80%;
-            box-shadow: 0px 0px 0px 8px #47286b; // 0 5px 20px
-            padding: 4px;
-          }
-
-          h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #000000;
-          }
-
-          p {
-            margin-bottom: 1rem;
-            line-height: 1.5;
-            color: #333;
-          }
-
-          button {
-            font-size: 0.6rem;
-            padding: 0.5rem 1rem;
-            background: #5a6dde;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            margin-top: 15px;
-            font-family: $font-pixel;
-            &:hover {
-              background: #c51f91;
-            }
-          }
+  
+      &__next-button {
+        &__room1 {
+          position: absolute;
+          left: 40%;
+          top: 53.5%;
+          width: 8.5vw;
+          height: 10vh;
+          /* comment the 3 below to make visible
+             border: none;
+             background: none;
+             color: transparent; */
+          cursor: pointer;
+          z-index: 2;
         }
-      }
-    }
-    &__next-button {
-      &__room1 {
-        position: absolute;
-        left: 40%;
-        top: 53.5%;
-        width: 8.5vw;
-        height: 10vh;
-        // comment the 3 below to make visible
-        border: none; /* Removes default border */
-        background: none;
-        color: transparent; /* Makes the text transparent */
-        cursor: pointer; /* Still shows a pointer on hover if desired */
-        z-index: 2;
-      }
-      &__room2 {
-        position: absolute;
-        left: 45%;
-        top: 75%;
-        width: 10vw;
-        height: 6vh;
-        border: none; /* Removes default border */
-        color: transparent; /* Makes the text transparent */
-        background: none;
-        background-image: url(../../public/nextbuttongreen.png);
-        background-size: cover;
-        background-repeat: no-repeat;
-        cursor: pointer; /* Still shows a pointer on hover if desired */
-        &:hover {
-          background-image: url(../../public/nextbuttonhover.png);
+        &__room2 {
+          position: absolute;
+          left: 45%;
+          top: 75%;
+          width: 10vw;
+          height: 6vh;
+          border: none;
+          color: transparent;
+          background: none;
+          background-image: url(../../public/nextbuttongreen.png);
           background-size: cover;
           background-repeat: no-repeat;
+          cursor: pointer;
+  
+          &:hover {
+            background-image: url(../../public/nextbuttonhover.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
         }
-      }
-      &__room3 {
-        position: absolute;
-        left: 45%;
-        top: 75%;
-        width: 10vw;
-        height: 6vh;
-        // border: none; /* Removes default border */
-        // color: transparent; /* Makes the text transparent */
-        // background: none;
-        // background-image: url();
-        // background-size: cover;
-        // background-repeat: no-repeat;
-        cursor: pointer; /* Still shows a pointer on hover if desired */
+        &__room3 {
+          position: absolute;
+          left: 20%;
+          top: 50%;
+          width: 10vw;
+          height: 6vh;
+          cursor: pointer;
+        }
       }
     }
   }
-}
+  
+  /* ──────────────────────────────────────────────────────────────────────────────
+     BEM-STYLE TIMER & PAUSE OVERLAY (NEW)
+     ────────────────────────────────────────────────────────────────────────────── */
+  
+  /* Timer (Block: .room__timer) */
+  .room__timer {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    z-index: 10; /* ensure it's above the room background */
+  
+    &__text {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      font-family: Arial, sans-serif; /* or your pixel font */
+    }
+  
+    &__pause-button {
+      background: #c51f91;
+      color: #fff;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      border-radius: 4px;
+  
+      &:hover {
+        background: #e635af;
+      }
+    }
+  }
+  
+  /* Pause Overlay (Block: .room__pause-overlay) */
+  .room__pause-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  
+    &__menu {
+      background: #ffffff;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 8px;
+      width: 300px; /* or whatever size you prefer */
+  
+      &__heading {
+        margin-bottom: 1rem;
+        font-family: Arial, sans-serif;
+      }
+  
+      &__button {
+        display: block;
+        margin: 0.5rem auto;
+        padding: 0.5rem 1rem;
+        background: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+  
+        &:hover {
+          background: #333;
+        }
+      }
+    }
+  }
+   

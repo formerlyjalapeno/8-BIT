@@ -1,14 +1,13 @@
 // Room.jsx
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // <-- for "Exit to main menu"
 import roomsData from "../components/Main Room Components/scripts/roomsData";
-// Local Storage Helpers
 import {
   loadRoomState,
   saveRoomState,
   loadPlayerInventory,
   savePlayerInventory,
 } from "../utils/storage.js";
-// Dev Reset
 import DevResetButton from "../components/DevResetButton.jsx";
 
 // Puzzles
@@ -19,33 +18,27 @@ import BlackJackPuzzle from "../components/Puzzle Components/Blackjack Puzzle Co
 import Items from "../components/Main Room Components/scripts/items";
 
 const Room = () => {
-  // 1) CURRENT ROOM ID (persisted)
+  const navigate = useNavigate(); // <-- For exiting to main menu
+
+  // -- Existing code (room states, inventory, puzzle logic, etc.) --
   const [currentRoomId, setCurrentRoomId] = useState(() => {
     const savedRoomId = localStorage.getItem("currentRoomId");
     return savedRoomId ? parseInt(savedRoomId, 10) : 0;
   });
   const currentRoom = roomsData.find((r) => r.id === currentRoomId);
 
-  // 2) Room states
   const [roomItemIds, setRoomItemIds] = useState(currentRoom?.items || []);
   const [roomQuestionIds, setRoomQuestionIds] = useState(
     currentRoom?.questions || []
   );
   const [isPuzzleSolved, setIsPuzzleSolved] = useState(false);
 
-  // 3) Global Inventory
   const [playerInventory, setPlayerInventory] = useState([]);
 
-  // 4) Overlays
   const [activeQuestion, setActiveQuestion] = useState(null);
   const [activeItemId, setActiveItemId] = useState(null);
-
-  // 5) itemPresent
   const [itemPresent, setItemPresent] = useState(roomItemIds.length > 0);
 
-  // ─────────────────────────────────────────────────────────────────────────────
-  // 6) LOAD from localStorage
-  // ─────────────────────────────────────────────────────────────────────────────
   useEffect(() => {
     localStorage.setItem("currentRoomId", currentRoomId.toString());
 
@@ -71,7 +64,6 @@ const Room = () => {
     setActiveItemId(null);
   }, [currentRoomId, currentRoom]);
 
-  // 7) SAVE room
   useEffect(() => {
     const currentRoomState = {
       items: roomItemIds,
@@ -81,12 +73,10 @@ const Room = () => {
     saveRoomState(currentRoomId, currentRoomState);
   }, [currentRoomId, roomItemIds, roomQuestionIds, isPuzzleSolved]);
 
-  // 8) SAVE inventory
   useEffect(() => {
     savePlayerInventory(playerInventory);
   }, [playerInventory]);
 
-  // 9) collectItem
   const collectItem = (id) => {
     const collectedItem = Items.find((itm) => itm.id === id);
     if (!collectedItem) return;
@@ -97,26 +87,22 @@ const Room = () => {
     }
   };
 
-  // 10) puzzleCompletion
   const handlePuzzleCompletion = () => {
     setIsPuzzleSolved(true);
     closeQuestion();
   };
 
-  // 11) Overlays
   const openQuestion = (id) => setActiveQuestion(id);
   const closeQuestion = () => setActiveQuestion(null);
   const onInspectItem = (id) => setActiveItemId(id);
   const closeItemOverlay = () => setActiveItemId(null);
 
-  // 12) Preload images
   const preloadImages = (urls) => {
     urls.forEach((url) => {
       const img = new Image();
       img.src = url;
     });
   };
-
   useEffect(() => {
     preloadImages([
       "/room-1-with-item.png",
@@ -130,7 +116,6 @@ const Room = () => {
     ]);
   }, []);
 
-  // 13) Hover logic
   const [Hover1, setHover1] = useState(false);
   const [Hover2, setHover2] = useState(false);
   const [Hover3, setHover3] = useState(false);
@@ -139,36 +124,28 @@ const Room = () => {
   const handleHover1MouseEnter = () => {
     if (!itemPresent && !isPuzzleSolved) setHover1(true);
   };
-
   const handleHover1MouseLeave = () => {
     setHover1(false);
   };
-
   const handleHover2MouseEnter = () => {
     if (!itemPresent && !isPuzzleSolved) setHover2(true);
   };
-
   const handleHover2MouseLeave = () => {
     setHover2(false);
   };
-
   const handleHover3MouseEnter = () => {
     if (!itemPresent && !isPuzzleSolved) setHover3(true);
   };
-
   const handleHover3MouseLeave = () => {
     setHover3(false);
   };
-
   const handleHover4MouseEnter = () => {
     if (!itemPresent && !isPuzzleSolved) setHover4(true);
   };
-
   const handleHover4MouseLeave = () => {
     setHover4(false);
   };
 
-  // 14) Background logic
   const containerClass =
     (currentRoomId === 0) & isPuzzleSolved
       ? "room__container room__container__finito-background-image"
@@ -180,7 +157,7 @@ const Room = () => {
       ? "room__container room__container__hover3-background-image"
       : (currentRoomId === 0) & Hover4
       ? "room__container room__container__hover4-background-image"
-      : (currentRoomId === 2)
+      : currentRoomId === 2
       ? "room__container"
       : currentRoomId === 1
       ? "room__container room__container__room2"
@@ -190,7 +167,6 @@ const Room = () => {
 
   const { class: nextRoomButtonClass } = currentRoom;
 
-  // 15) goToNextRoom
   const goToNextRoom = () => {
     const nextRoomId = currentRoomId + 1;
     const nextExists = roomsData.some((rr) => rr.id === nextRoomId);
@@ -204,10 +180,87 @@ const Room = () => {
     setCurrentRoomId(nextRoomId);
   };
 
-  // 16) RENDER
+  // ───────────────────────────────────────────────────────────
+  // TIMER & PAUSE: Add states and effects for the 10-min timer
+  // ───────────────────────────────────────────────────────────
+  const [timeLeft, setTimeLeft] = useState(600); // 600 seconds = 10 minutes
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Decrement the timer once per second, if not paused
+  useEffect(() => {
+    // If timeLeft is already 0, do nothing.
+    if (timeLeft <= 0) return;
+
+    const intervalId = setInterval(() => {
+      if (!isPaused) {
+        setTimeLeft((prev) => {
+          const nextVal = prev - 1;
+          // If it hits 0, we stop the interval
+          if (nextVal <= 0) {
+            clearInterval(intervalId);
+            return 0;
+          }
+          return nextVal;
+        });
+      }
+    }, 1000);
+
+    // Cleanup interval on unmount or re-render
+    return () => clearInterval(intervalId);
+  }, [isPaused, timeLeft]);
+
+  // Helper function: convert seconds -> "MM:SS"
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s < 10 ? "0" : ""}${s}`;
+  };
+
+  // Called when the user clicks "Exit" from the pause menu
+  const handleExitToMenu = () => {
+    // If you want to do any cleanup before navigating, do it here
+    navigate("/welcome"); // or navigate("/mainmenu") if that's your main menu route
+  };
+
+  // ───────────────────────────────────────────────────────────
+  // RENDER
+  // ───────────────────────────────────────────────────────────
   return (
     <main className={containerClass}>
-      {/* If we are in Room 0 => Binary Puzzle */}
+      {/* TIMER & PAUSE UI: Displays at top (or wherever you like) */}
+      <div className="room__timer">
+        <span className="room__timer__text">
+          Time Left: {formatTime(timeLeft)}
+        </span>
+        <button
+          onClick={() => setIsPaused(true)}
+          className="room__timer__pause-button"
+        >
+          Pause
+        </button>
+      </div>
+
+      {/* Pause Overlay */}
+      {isPaused && (
+        <div className="room__pause-overlay">
+          <div className="room__pause-overlay__menu">
+            <h2 className="room__pause-overlay__menu__heading">Paused</h2>
+            <button
+              className="room__pause-overlay__menu__button"
+              onClick={() => setIsPaused(false)}
+            >
+              Continue
+            </button>
+            <button
+              className="room__pause-overlay__menu__button"
+              onClick={handleExitToMenu}
+            >
+              Exit
+            </button>
+          </div>
+        </div>
+      )}
+      {/* Existing puzzle rendering code */}
       {currentRoomId === 0 && (
         <BinaryPuzzle
           roomItemIds={roomItemIds}
@@ -240,7 +293,6 @@ const Room = () => {
         />
       )}
 
-      {/* If we are in Room 1 => CassettePuzzle */}
       {currentRoomId === 1 && (
         <CassettePuzzle
           isPuzzleSolved={isPuzzleSolved}
@@ -248,13 +300,11 @@ const Room = () => {
           onPuzzleCompletion={handlePuzzleCompletion}
         />
       )}
- 
-      {/* If we are in Room 2 => Blackjack Puzzle */}
+
       {currentRoomId === 2 && (
         <BlackJackPuzzle onWin={() => setIsPuzzleSolved(true)} />
       )}
 
-      {/* Show "Go to Next Room" if puzzle is solved */}
       {isPuzzleSolved && (
         <button
           className={nextRoomButtonClass}
@@ -264,6 +314,7 @@ const Room = () => {
           Go to Next Room
         </button>
       )}
+
       <DevResetButton />
     </main>
   );
