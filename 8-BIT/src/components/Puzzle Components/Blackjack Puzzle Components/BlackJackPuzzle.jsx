@@ -21,7 +21,7 @@ function getCardImage(card) {
 
   // e.g. "/cards/2H.png", "/cards/KD.png", etc.
   // return `/cards/${valueShort}${suitShort}.png`;
-  return `../../../../public/backcard.png`;
+  return `../../../../public/backcard.png`; // Temporarily always shows backcard
 }
 
 const BlackjackGame = ({ onWin }) => {
@@ -120,7 +120,7 @@ const BlackjackGame = ({ onWin }) => {
     // Subtract bet from chips
     setChips((prev) => prev - bet);
 
-    // Check for immediate blackjack
+    // Check immediate blackjack
     const playerTotal = calculateHandValue(playerStart);
     const dealerTotal = calculateHandValue(dealerStart);
     if (!checkForBlackjack(playerTotal, dealerTotal)) {
@@ -198,6 +198,11 @@ const BlackjackGame = ({ onWin }) => {
       playDealerTurn();
     }
   };
+
+  // OLD: only rendered if 2 cards
+  // {playerHands[currentHandIndex].cards.length === 2 && (
+  //   <button onClick={doubleDown}>Double Down</button>
+  // )}
 
   const doubleDown = () => {
     const currentHand = playerHands[currentHandIndex];
@@ -398,8 +403,6 @@ const BlackjackGame = ({ onWin }) => {
                   </div>
                 ))}
               </div>
-              {/* NEW ROUND BUTTON */}
-              <button onClick={startNewRound}>New Round</button>
             </div>
           )}
 
@@ -434,14 +437,47 @@ const BlackjackGame = ({ onWin }) => {
               </div>
 
               <div className="puzzle-blackjack__game__actions">
-                <button onClick={playerHit}>Hit</button>
-                <button onClick={endTurn}>Stand</button>
-                {canSplit(playerHands[currentHandIndex]) && (
-                  <button onClick={splitHand}>Split</button>
-                )}
-                {playerHands[currentHandIndex].cards.length === 2 && (
-                  <button onClick={doubleDown}>Double Down</button>
-                )}
+                <button
+                  className="puzzle-blackjack__game__actions__hit"
+                  onClick={playerHit}
+                >
+                  Hit
+                </button>
+                <button
+                  className="puzzle-blackjack__game__actions__stand"
+                  onClick={endTurn}
+                >
+                  Stand
+                </button>
+
+                {/* Always show Split, disabled if can't split */}
+                <button
+                  className="puzzle-blackjack__game__actions__split"
+                  onClick={splitHand}
+                  disabled={!canSplit(playerHands[currentHandIndex])}
+                >
+                  Split
+                </button>
+
+                {/* Always show Double Down, disabled if not valid */}
+                <button
+                  className="puzzle-blackjack__game__actions__doubledown"
+                  onClick={doubleDown}
+                  disabled={
+                    playerHands[currentHandIndex].cards.length !== 2 ||
+                    chips < playerHands[currentHandIndex].bet
+                  }
+                >
+                  Double Down
+                </button>
+                {/* NEW ROUND BUTTON -> always rendered in this block, disabled if not result */}
+                <button
+                  className="puzzle-blackjack__game__actions__newround" 
+                  onClick={startNewRound}
+                  disabled={gameState !== "result"}
+                >
+                  New Round
+                </button>
               </div>
             </div>
           )}

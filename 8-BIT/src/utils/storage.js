@@ -22,3 +22,13 @@ export function loadPlayerInventory() {
   const stored = localStorage.getItem("playerInventory");
   return stored ? JSON.parse(stored) : [];
 }
+
+// GAME START
+export function saveGameStarted(isStarted) {
+  localStorage.setItem("gameStarted", JSON.stringify(isStarted));
+}
+
+export function loadGameStarted() {
+  const stored = localStorage.getItem("gameStarted");
+  return stored ? JSON.parse(stored) : false;
+}

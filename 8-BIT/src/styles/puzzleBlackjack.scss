@@ -198,7 +198,7 @@
       top: 38%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 500px;
+      width: 100vw;
       min-height: 100px;
     }
 
@@ -208,23 +208,30 @@
       bottom: 2%;
       left: 50%;
       transform: translateX(-50%);
-      width: 500px;
-
-      &--active {
-        background-color: #1c1c3c;
-      }
+      width: 100vw;
+      min-height: 100px;
     }
 
     /* The action buttons for Hit/Stand/etc. We position them near bottom as well. */
     &__actions {
+      width: 450px;
       position: absolute;
-      bottom: 10%;
-      left: 50%;
+      bottom: 10vh;
+      right: -10vw;
       transform: translateX(-50%);
       margin: 0;
-
-      button {
-        padding: 10px 15px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      &__hit,
+      &__stand,
+      &__doubledown,
+      &__split {
+        width: 200px;
+        padding: 35px 15px;
         font-size: 1rem;
         margin: 0 5px;
         border: none;
@@ -240,6 +247,18 @@
           background-color: #444;
           color: #999;
           cursor: not-allowed;
+        }
+      }
+      &__newround {
+        width: 435px;
+        padding: 35px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        background-color: #ffc107;
+        color: #333;
+        cursor: pointer;
+        &:hover {
+          background-color: #e0a800;
         }
       }
     }
@@ -273,19 +292,6 @@
         font-size: 1rem;
         margin: 5px 0;
         color: #ccc;
-      }
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      background-color: #ffc107;
-      color: #333;
-      cursor: pointer;
-      &:hover {
-        background-color: #e0a800;
       }
     }
   }
