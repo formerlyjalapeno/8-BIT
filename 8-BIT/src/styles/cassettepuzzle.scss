@@ -8,12 +8,14 @@
 
 .puzzle-cassette {
   background: transparent; /* Assuming room background handles overall background */
-  color: #0f0; /* Green text by default */
+  color: rgb(0, 255, 0); /* Green text by default */
   text-align: center;
   padding: 1rem;
 
   h2 {
-    text-shadow: 2px 2px #fff;
+    font-weight: bolder;
+    -webkit-text-stroke: 0.1px rgb(12, 49, 26); /* width and color */
+    text-shadow: 0px 2px 0px black;
   }
 
   &__complete-message {
@@ -70,7 +72,7 @@
     background: black;
     width: 80px;
     min-height: 400px; /* Increased for up to 6 cassettes + 2 empty slots */
-    border: 2px solid #68ba2f; /* Green border */
+    border: 4px solid #68ba2f; /* Green border */
     border-radius: 4px;
     padding: 4px;
     display: flex;
