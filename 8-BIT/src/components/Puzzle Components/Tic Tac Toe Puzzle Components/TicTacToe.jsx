@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
-import "../../../styles/TicTacToe.scss";
+import { useNavigate } from "react-router-dom";
+import "../../../styles/main.scss";
 
 const TicTacToe = ({ onWin, onReset }) => {
   const emptyBoard = Array(9).fill(null);
-  const [board, setBoard] = useState(
-    () => JSON.parse(localStorage.getItem("ticTacToeBoard")) || emptyBoard
-  );
-  const [playerTurn, setPlayerTurn] = useState(
-    () => JSON.parse(localStorage.getItem("ticTacToeTurn")) ?? false
-  );
+  const navigate = useNavigate();
+  const [board, setBoard] = useState(() => JSON.parse(localStorage.getItem("ticTacToeBoard")) || emptyBoard);
+  const [playerTurn, setPlayerTurn] = useState(() => JSON.parse(localStorage.getItem("ticTacToeTurn")) ?? false);
   const [gameOver, setGameOver] = useState(false);
-  const [moveCount, setMoveCount] = useState(
-    () => JSON.parse(localStorage.getItem("ticTacToeMoveCount")) || 0
-  );
+  const [moveCount, setMoveCount] = useState(() => JSON.parse(localStorage.getItem("ticTacToeMoveCount")) || 0);
+  const [lossCount, setLossCount] = useState(() => JSON.parse(localStorage.getItem("ticTacToeLossCount")) || 0);
+
+  // 🟢 AI MAKES FIRST MOVE 500ms AFTER PAGE LOAD
+  useEffect(() => {
+    if (moveCount === 0 && !gameOver) {
+      setTimeout(() => {
+        aiMove();
+      }, 500);
+    }
+  }, []);
 
   useEffect(() => {
     if (!playerTurn && !gameOver && moveCount > 0) {
@@ -24,22 +30,17 @@ const TicTacToe = ({ onWin, onReset }) => {
     localStorage.setItem("ticTacToeBoard", JSON.stringify(board));
     localStorage.setItem("ticTacToeTurn", JSON.stringify(playerTurn));
     localStorage.setItem("ticTacToeMoveCount", JSON.stringify(moveCount));
-  }, [board, playerTurn, moveCount]);
+    localStorage.setItem("ticTacToeLossCount", JSON.stringify(lossCount));
+  }, [board, playerTurn, moveCount, lossCount]);
 
   const winningPatterns = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8], // Rows
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8], // Columns
-    [0, 4, 8],
-    [2, 4, 6], // Diagonals
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
   ];
 
   const checkWinner = (currentBoard) => {
-    if (moveCount < 5) return null; // Prevents early win detection
-
+    if (moveCount < 5) return null;
     for (let pattern of winningPatterns) {
       const [a, b, c] = pattern;
       if (
@@ -47,21 +48,41 @@ const TicTacToe = ({ onWin, onReset }) => {
         currentBoard[a] === currentBoard[b] &&
         currentBoard[a] === currentBoard[c]
       ) {
-        return currentBoard[a]; // Return "X" or "O" if there's a winner
+        return currentBoard[a];
       }
     }
     return currentBoard.includes(null) ? null : "Draw";
   };
 
+  const handleGameOver = (winner) => {
+    if (winner === "O") {
+      setLossCount((prev) => prev + 1);
+      localStorage.setItem("ticTacToeLossCount", JSON.stringify(lossCount + 1));
+
+      if (lossCount + 1 >= 6) {
+        setTimeout(() => {
+          alert("You can’t escape. It’s too late. 😈");
+          navigate("/epilogue");
+        }, 500);
+      }
+    }
+  };
+
+  const rogueAIMessages = [
+    "You think you can escape? Foolish.",
+    "This is my game. You will lose.",
+    "Every loss brings you closer to the truth.",
+    "I see you struggling. It’s amusing.",
+    "The outcome is inevitable.",
+    "Why do you keep playing? You know how this ends."
+  ];
+
   const findWinningMove = (boardState, player) => {
     for (let pattern of winningPatterns) {
       const [a, b, c] = pattern;
       let values = [boardState[a], boardState[b], boardState[c]];
-      if (
-        values.filter((val) => val === player).length === 2 &&
-        values.includes(null)
-      ) {
-        return pattern[values.indexOf(null)]; // Find and return the empty spot
+      if (values.filter((val) => val === player).length === 2 && values.includes(null)) {
+        return pattern[values.indexOf(null)];
       }
     }
     return null;
@@ -69,11 +90,10 @@ const TicTacToe = ({ onWin, onReset }) => {
 
   const findAggressiveMove = (boardState) => {
     const aggressiveMoves = [
-      [0, 2, 6, 8], // Prioritize corners (most winning potential)
-      [4], // Then center (but not first)
-      [1, 3, 5, 7], // Then edges
+      [0, 2, 6, 8], 
+      [4], 
+      [1, 3, 5, 7]
     ];
-
     for (let group of aggressiveMoves) {
       for (let move of group) {
         if (boardState[move] === null) {
@@ -89,23 +109,14 @@ const TicTacToe = ({ onWin, onReset }) => {
 
     let newBoard = [...board];
 
-    // 1️⃣ AI wins if possible
     let bestMove = findWinningMove(newBoard, "O");
-
-    // 2️⃣ If no AI win, block player from winning
     if (bestMove === null) bestMove = findWinningMove(newBoard, "X");
-
-    // 3️⃣ If no win/block, play aggressively (favor corners)
     if (bestMove === null) bestMove = findAggressiveMove(newBoard);
+    if (bestMove === null) bestMove = newBoard.findIndex((cell) => cell === null);
 
-    // 4️⃣ If no aggressive move, choose any available spot
-    if (bestMove === null)
-      bestMove = newBoard.findIndex((cell) => cell === null);
-
-    // 🛑 Ensure AI only makes a valid move
     if (bestMove !== null && newBoard[bestMove] === null) {
       newBoard[bestMove] = "O";
-      setBoard([...newBoard]); // Ensure updated board is used
+      setBoard([...newBoard]);
       setMoveCount((prev) => prev + 1);
       localStorage.setItem("ticTacToeBoard", JSON.stringify(newBoard));
     }
@@ -113,10 +124,9 @@ const TicTacToe = ({ onWin, onReset }) => {
     const winner = checkWinner(newBoard);
     if (winner) {
       setGameOver(true);
+      handleGameOver(winner);
       setTimeout(() => {
-        alert(
-          `Game Over: ${winner === "Draw" ? "It's a draw!" : `${winner} wins!`}`
-        );
+        alert(`Game Over: ${winner === "Draw" ? "It's a draw!" : `${winner} wins!`}`);
         if (winner === "X") onWin();
       }, 200);
       return;
@@ -141,10 +151,9 @@ const TicTacToe = ({ onWin, onReset }) => {
     const winner = checkWinner(newBoard);
     if (winner) {
       setGameOver(true);
+      handleGameOver(winner);
       setTimeout(() => {
-        alert(
-          `Game Over: ${winner === "Draw" ? "It's a draw!" : `${winner} wins!`}`
-        );
+        alert(`Game Over: ${winner === "Draw" ? "It's a draw!" : `${winner} wins!`}`);
         if (winner === "X") onWin();
       }, 200);
       return;
@@ -165,23 +174,20 @@ const TicTacToe = ({ onWin, onReset }) => {
     localStorage.removeItem("ticTacToeMoveCount");
 
     setTimeout(() => {
+      alert("Game reset! Try again.");
       aiMove();
-    }, 300);
+    }, 100);
   };
 
   return (
     <div className="tic-tac-toe">
-      <h2 className="tic-tac-toe__title">Lose-Lose-Lose</h2>
+      <h2 className="tic-tac-toe__title">Tic-Tac-Toe</h2>
       <div className="tic-tac-toe__board">
         {board.map((cell, index) => (
           <div
             key={index}
             className={`tic-tac-toe__cell ${
-              cell === "X"
-                ? "tic-tac-toe__cell--win"
-                : cell === "O"
-                ? "tic-tac-toe__cell--lose"
-                : ""
+              cell === "X" ? "tic-tac-toe__cell--win" : cell === "O" ? "tic-tac-toe__cell--lose" : ""
             }`}
             onClick={() => handleClick(index)}
           >
@@ -191,10 +197,10 @@ const TicTacToe = ({ onWin, onReset }) => {
       </div>
       <p className="tic-tac-toe__status">
         {gameOver
-          ? "Game Over!"
+          ? rogueAIMessages[Math.floor(Math.random() * rogueAIMessages.length)]
           : playerTurn
-          ? "Your turn!"
-          : "AI is thinking..."}
+          ? "Make your move... if you dare. 😈"
+          : "Processing... your fate. 🔄"}
       </p>
       <button className="tic-tac-toe__reset-button" onClick={handleReset}>
         Reset Game

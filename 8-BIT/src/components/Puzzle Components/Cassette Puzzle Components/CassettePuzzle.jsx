@@ -1,6 +1,5 @@
 // CassettePuzzle.jsx
 import { useState, useEffect } from "react";
-import "../../../styles/cassettePuzzle.scss";
 
 // Example images for the 5 cassette colors
 import GrayImg from "../../../../public/Gray.png";

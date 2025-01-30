@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { generateDeck } from "./scripts/deck.js";
-import "../../../styles/puzzleBlackjack.scss";
 
 /**
  * Convert { suit, value } to a card image file path.
@@ -38,7 +37,7 @@ const BlackjackGame = ({ onWin }) => {
   const [lastBet, setLastBet] = useState(0);
   const [history, setHistory] = useState([]);
 
-  const winningChips = 150;
+  const winningChips = 0;
 
   // ─────────────────────────────────────────────────────────────────────────────
   //  2) LOAD from localStorage on mount
@@ -532,7 +531,6 @@ const BlackjackGame = ({ onWin }) => {
                         />
                       ))}
                     </div>
-                    <p>Total: {calculateHandValue(hand.cards)}</p>
                     <p>Bet: {hand.bet}</p>
                   </div>
                 ))}

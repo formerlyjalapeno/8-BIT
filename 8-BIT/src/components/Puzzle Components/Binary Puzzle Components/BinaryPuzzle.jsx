@@ -4,8 +4,6 @@ import Questions from "../../Main Room Components/scripts/questions";
 import QuestionOverlay from "../../Main Room Components/QuestionOverlay";
 import ItemOverlay from "../../Main Room Components/ItemOverlay";
 import Inventory from "../../Inventory Components/Inventory";
-import "../../../styles/binarypuzzle.scss";
-import { useState } from "react";
 
 /**
  * PROPS we expect from Room.jsx:
