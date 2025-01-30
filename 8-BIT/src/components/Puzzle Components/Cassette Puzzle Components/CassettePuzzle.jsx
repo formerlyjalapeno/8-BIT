@@ -247,7 +247,7 @@ export default function CassettePuzzle({
           isPuzzleSolved ? "puzzle-cassette--solved" : ""
         }`}
       >
-        <h2>Welcome to Hell</h2>
+        <h2>Welcome to Your Misery</h2>
 
         {isPuzzleSolved && (
           <p className="puzzle-cassette__complete-message">Puzzle Solved!</p>
