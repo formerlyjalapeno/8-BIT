@@ -1,0 +1,236 @@
+/* src/components/Interim Components/Cutscene.scss */
+
+/* Define blurple gradient colors */
+$blurple-1: #5865F2; // Primary Blurple
+$blurple-2: #6A75F3; // Lighter Blurple
+$blurple-3: #4E5FFF; // Slightly Darker Blurple
+$blurple-4: #7289DA; // Complementary Blurple
+
+.cutscene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85); // Semi-transparent black background
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; // Ensure it sits above the room content
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); // Black with 70% opacity
+    z-index: -1; // Positioned behind text elements
+  }
+
+  &__top-message {
+    position: relative;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: transparent; // Make text transparent for gradient
+    background: linear-gradient(90deg, $blurple-1, $blurple-2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    user-select: none;
+    margin-bottom: 20px;
+    animation: gradient-anim 5s ease infinite; // Optional gradient animation
+
+    /* Glitch effect using pseudo-elements */
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: transparent; // Make pseudo-text transparent
+      background: linear-gradient(90deg, $blurple-3, $blurple-4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      overflow: hidden;
+      clip: rect(0, 9999px, 0, 0);
+    }
+
+    &::before {
+      left: 2px;
+      text-shadow: -2px 0 $blurple-1;
+      animation: glitch-anim-before 2s infinite linear alternate-reverse;
+      opacity: 0.8; // Slight transparency
+    }
+
+    &::after {
+      left: -2px;
+      text-shadow: 2px 0 $blurple-2;
+      animation: glitch-anim-after 2s infinite linear alternate-reverse;
+      opacity: 0.8; // Slight transparency
+    }
+  }
+
+  &__taunt-message {
+    position: relative;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: transparent; // Make text transparent for gradient
+    background: linear-gradient(90deg, $blurple-1, $blurple-2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    user-select: none;
+    animation: gradient-anim 5s ease infinite; // Optional gradient animation
+
+    /* Glitch effect using pseudo-elements */
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: transparent; // Make pseudo-text transparent
+      background: linear-gradient(90deg, $blurple-3, $blurple-4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      overflow: hidden;
+      clip: rect(0, 9999px, 0, 0);
+    }
+
+    &::before {
+      left: 2px;
+      text-shadow: -2px 0 $blurple-1;
+      animation: glitch-anim-before 2s infinite linear alternate-reverse;
+      opacity: 0.8; // Slight transparency
+    }
+
+    &::after {
+      left: -2px;
+      text-shadow: 2px 0 $blurple-2;
+      animation: glitch-anim-after 2s infinite linear alternate-reverse;
+      opacity: 0.8; // Slight transparency
+    }
+  }
+}
+
+/* Keyframe animations for glitch effect */
+@keyframes glitch-anim-before {
+  0% {
+    clip: rect(42px, 9999px, 44px, 0);
+    transform: skew(0.5deg);
+  }
+  10% {
+    clip: rect(12px, 9999px, 56px, 0);
+    transform: skew(0.5deg);
+  }
+  20% {
+    clip: rect(85px, 9999px, 95px, 0);
+    transform: skew(0.5deg);
+  }
+  30% {
+    clip: rect(30px, 9999px, 50px, 0);
+    transform: skew(0.5deg);
+  }
+  40% {
+    clip: rect(70px, 9999px, 90px, 0);
+    transform: skew(0.5deg);
+  }
+  50% {
+    clip: rect(10px, 9999px, 60px, 0);
+    transform: skew(0.5deg);
+  }
+  60% {
+    clip: rect(20px, 9999px, 70px, 0);
+    transform: skew(0.5deg);
+  }
+  70% {
+    clip: rect(15px, 9999px, 55px, 0);
+    transform: skew(0.5deg);
+  }
+  80% {
+    clip: rect(25px, 9999px, 65px, 0);
+    transform: skew(0.5deg);
+  }
+  90% {
+    clip: rect(35px, 9999px, 75px, 0);
+    transform: skew(0.5deg);
+  }
+  100% {
+    clip: rect(42px, 9999px, 44px, 0);
+    transform: skew(0.5deg);
+  }
+}
+
+@keyframes glitch-anim-after {
+  0% {
+    clip: rect(10px, 9999px, 20px, 0);
+    transform: skew(-0.5deg);
+  }
+  10% {
+    clip: rect(30px, 9999px, 40px, 0);
+    transform: skew(-0.5deg);
+  }
+  20% {
+    clip: rect(50px, 9999px, 60px, 0);
+    transform: skew(-0.5deg);
+  }
+  30% {
+    clip: rect(70px, 9999px, 80px, 0);
+    transform: skew(-0.5deg);
+  }
+  40% {
+    clip: rect(90px, 9999px, 100px, 0);
+    transform: skew(-0.5deg);
+  }
+  50% {
+    clip: rect(20px, 9999px, 30px, 0);
+    transform: skew(-0.5deg);
+  }
+  60% {
+    clip: rect(40px, 9999px, 50px, 0);
+    transform: skew(-0.5deg);
+  }
+  70% {
+    clip: rect(60px, 9999px, 70px, 0);
+    transform: skew(-0.5deg);
+  }
+  80% {
+    clip: rect(80px, 9999px, 90px, 0);
+    transform: skew(-0.5deg);
+  }
+  90% {
+    clip: rect(100px, 9999px, 110px, 0);
+    transform: skew(-0.5deg);
+  }
+  100% {
+    clip: rect(10px, 9999px, 20px, 0);
+    transform: skew(-0.5deg);
+  }
+}
+
+/* Optional: Gradient animation for smooth transitions */
+@keyframes gradient-anim {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
