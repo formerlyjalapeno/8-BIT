@@ -1,0 +1,331 @@
+/*
+  BEM Structure: .puzzle-blackjack (Block)
+  Elements (__element):
+    __layout, __table, __sidebar
+    __betting-container, __betting-input, __betting-button
+    __history, __cards-row, __card
+    __game, with sub-elements:
+      &__dealer, &__player-hand, &__actions
+    __result
+  Modifiers (--modifier):
+    --active, --disabled, etc.
+*/
+
+.puzzle-blackjack {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 2px solid #555;
+  border-radius: 10px;
+  background-color: #222;
+  color: #f8f9fa;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #ccc;
+  }
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     LAYOUT & SIDEBAR
+     ─────────────────────────────────────────────────────────────────────────── */
+  &__layout {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    background-color: #111;
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  &__table {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 300px; /* space for the sidebar */
+    margin: 0;
+    padding: 0;
+  }
+
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px;
+    padding: 10px;
+    overflow-y: auto;
+  }
+
+  &__sidebar-container,
+  &__history {
+    background-color: #2a2a2a;
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 20px;
+
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        margin: 5px 0;
+        color: #ccc;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     BETTING CONTAINER
+     ─────────────────────────────────────────────────────────────────────────── */
+  &__betting-container {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    /* Position it absolutely above the player's hand if desired: */
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #555;
+
+    &--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+      display: none;
+    }
+  }
+  &__betting-input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #333;
+    color: #f8f9fa;
+    width: 150px;
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+  }
+
+  &__betting-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+    &--disabled {
+      background-color: #444;
+      color: #999;
+      cursor: not-allowed;
+    }
+  }
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     GAME + DEALER/PLAYER-HAND + ACTIONS
+     ─────────────────────────────────────────────────────────────────────────── */
+  &__game {
+    margin-top: 20px;
+
+    /* Common styling for dealer/player boxes */
+    &__dealer,
+    &__player-hand {
+      padding: 5px;
+      margin: 5px 0;
+      text-align: center; /* so text is centered by default */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h3 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        color: #fff;
+      }
+      div {
+        font-size: 1rem;
+        margin-bottom: 5px;
+        color: #ddd;
+      }
+      p {
+        margin: 5px 0;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #bbb;
+      }
+    }
+
+    /* Dealer near the middle (absolute) */
+    &__dealer {
+      position: absolute;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      min-height: 100px;
+    }
+
+    /* Player near the bottom (absolute) */
+    &__player-hand {
+      position: absolute;
+      bottom: 2%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      min-height: 100px;
+    }
+
+    /* The action buttons for Hit/Stand/etc. We position them near bottom as well. */
+    &__actions {
+      width: 450px;
+      position: absolute;
+      bottom: 10vh;
+      right: -10vw;
+      transform: translateX(-50%);
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      z-index: 999;
+      &__hit,
+      &__stand,
+      &__doubledown,
+      &__split {
+        width: 200px;
+        padding: 35px 15px;
+        font-size: 1rem;
+        margin: 0 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #28a745;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #218838;
+        }
+        &--disabled {
+          background-color: #444;
+          color: #999;
+          cursor: not-allowed;
+        }
+      }
+      &__newround {
+        width: 435px;
+        padding: 35px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        background-color: #ffc107;
+        color: #333;
+        cursor: pointer;
+        &:hover {
+          background-color: #e0a800;
+        }
+      }
+      &__next-room {
+        width: 435px;
+        bottom: 42.5vh;
+        right: 18.4vw;
+        position: absolute;
+        padding: 35px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        background-color: #00ff4c;
+        color: #333;
+        cursor: pointer;
+        &:hover {
+          background-color: #00df43;
+        }
+      }
+    }
+  }
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     RESULT AREA
+     ─────────────────────────────────────────────────────────────────────────── */
+  &__result {
+    margin-top: 20px;
+
+    &__dealer,
+    &__player-hand {
+      border: 1px solid #444;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #333;
+
+      h3 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        color: #fff;
+      }
+      div {
+        font-size: 1rem;
+        margin-bottom: 5px;
+        color: #ddd;
+      }
+      p {
+        font-size: 1rem;
+        margin: 5px 0;
+        color: #ccc;
+      }
+    }
+  }
+
+  /* ───────────────────────────────────────────────────────────────────────────
+     CARDS ROW & CARD
+     ─────────────────────────────────────────────────────────────────────────── */
+  &__cards-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__card {
+    width: 200px !important; /* If you want 200x320 for the card size */
+    height: 320px !important;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+}

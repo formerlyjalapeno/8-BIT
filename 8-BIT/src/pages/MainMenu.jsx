@@ -1,9 +1,22 @@
 import { Link } from "react-router-dom";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Error from "../components/Additional Components/Error";
+import { saveGameStarted, loadGameStarted } from "../utils/storage.js";
 
 const Welcome = () => {
   const elementRef = useRef(null);
+  
+  // Initialize local state with the stored value from local storage
+  const [gameStarted, setGameStarted] = useState(loadGameStarted());
+
+  // Whenever the local `gameStarted` state changes, save to local storage
+  useEffect(() => {
+    saveGameStarted(gameStarted);
+  }, [gameStarted]);
+
+  const handleStart = () => {
+    setGameStarted(true);
+  };
 
   const ActivateErrorOverlay = () => {
     if (elementRef.current) {
@@ -49,7 +62,16 @@ const Welcome = () => {
         </h4>
         <div className="mainmenu__play-buttons__seperation-line"></div>
         <Link to="/loading" style={{ textDecoration: "none" }}>
-          <h4 className="mainmenu__play-buttons__blue-gradient">PLAY</h4>
+          {gameStarted ? (
+            <h4 className="mainmenu__play-buttons__blue-gradient">CONTINUE</h4>
+          ) : (
+            <h4
+              className="mainmenu__play-buttons__blue-gradient"
+              onClick={handleStart}
+            >
+              PLAY
+            </h4>
+          )}
         </Link>
       </article>
       <div className="mainmenu__credits-button">

@@ -1,0 +1,82 @@
+.tic-tac-toe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  font-family: "Arial", sans-serif;
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  &__board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  &__cell {
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: background 0.3s ease-in-out, transform 0.1s ease-in-out;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    // BEM Modifiers for special states
+    &--win {
+      background: #4caf50; // Green for winning move
+    }
+
+    &--lose {
+      background: #f44336; // Red if player loses
+    }
+
+    &--draw {
+      background: #ffeb3b; // Yellow for a draw
+    }
+  }
+
+  &__status {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    color: #ffeb3b;
+  }
+
+  &__reset-button {
+    position: absolute;
+    bottom: 1rem;
+    right: 8rem;
+    background: red;
+    color: white;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    z-index: 9999;
+    &:hover {
+      background: darkred;
+    }
+  }
+}
