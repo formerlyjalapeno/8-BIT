@@ -26,9 +26,16 @@ const roomsData = [
     backgroundWithoutItem: "/room-3.png",
     items: [], // No items in Room 3
     questions: [], // If you have no questions for Room 3, set this empty
-    class: "room__container__next-button__room3",
+    class: "puzzle-blackjack__game__actions__next-room",
   },
-  // Additional rooms...
+  {
+    id: 3, // New Tic-Tac-Toe Room
+    backgroundWithItem: "/room-4.png",
+    backgroundWithoutItem: "/room-4.png",
+    items: [],
+    questions: [],
+    class: "room__container__next-button__room4",
+  },
 ];
-  
+
 export default roomsData;

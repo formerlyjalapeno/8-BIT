@@ -14,6 +14,7 @@ import DevResetButton from "../components/DevResetButton.jsx";
 import BinaryPuzzle from "../components/Puzzle Components/Binary Puzzle Components/BinaryPuzzle";
 import CassettePuzzle from "../components/Puzzle Components/Cassette Puzzle Components/CassettePuzzle";
 import BlackJackPuzzle from "../components/Puzzle Components/Blackjack Puzzle Components/BlackJackPuzzle.jsx";
+import TicTacToe from "../components/Puzzle Components/Tic Tac Toe Puzzle Components/TicTacToe";
 
 import Items from "../components/Main Room Components/scripts/items";
 
@@ -40,11 +41,7 @@ const Room = () => {
   const [itemPresent, setItemPresent] = useState(roomItemIds.length > 0);
 
   useEffect(() => {
-    localStorage.setItem("currentRoomId", currentRoomId.toString());
-
-    const savedInventory = loadPlayerInventory();
-    setPlayerInventory(savedInventory);
-
+    // Load room state
     const savedRoomState = loadRoomState(currentRoomId);
     if (savedRoomState) {
       setRoomItemIds(savedRoomState.items || currentRoom.items);
@@ -58,6 +55,25 @@ const Room = () => {
       setRoomQuestionIds(currentRoom.questions);
       setIsPuzzleSolved(false);
       setItemPresent(currentRoom.items.length > 0);
+    }
+
+    // Load player inventory
+    const savedInventory = loadPlayerInventory();
+    setPlayerInventory(savedInventory);
+
+    // Load BlackjackGame's chips to set isPuzzleSolved if chips >= 150
+    try {
+      const blackjackDataRaw = localStorage.getItem(
+        "blackjackGameData_chips150"
+      );
+      if (blackjackDataRaw) {
+        const blackjackData = JSON.parse(blackjackDataRaw);
+        if (blackjackData.chips >= 150) {
+          setIsPuzzleSolved(true);
+        }
+      }
+    } catch (error) {
+      console.error("Error loading BlackjackGame data:", error);
     }
 
     setActiveQuestion(null);
@@ -159,6 +175,8 @@ const Room = () => {
       ? "room__container room__container__hover4-background-image"
       : currentRoomId === 2
       ? "room__container"
+      : currentRoomId === 3
+      ? "room__container"
       : currentRoomId === 1
       ? "room__container room__container__room2"
       : (currentRoomId === 0) & itemPresent
@@ -177,6 +195,9 @@ const Room = () => {
     localStorage.setItem("currentRoomId", nextRoomId.toString());
     localStorage.removeItem("roomsState");
     localStorage.removeItem("playerInventory");
+    // Remove BlackjackGame's data if moving to next room
+    localStorage.removeItem("blackjackGameData_chips150");
+    localStorage.removeItem("blackjackHasWon");
     setCurrentRoomId(nextRoomId);
   };
 
@@ -260,6 +281,7 @@ const Room = () => {
           </div>
         </div>
       )}
+
       {/* Existing puzzle rendering code */}
       {currentRoomId === 0 && (
         <BinaryPuzzle
@@ -305,6 +327,14 @@ const Room = () => {
         <BlackJackPuzzle onWin={() => setIsPuzzleSolved(true)} />
       )}
 
+      {currentRoomId === 3 && (
+        <TicTacToe
+          onWin={() => setIsPuzzleSolved(true)}
+          onReset={() => setIsPuzzleSolved(false)}
+        />
+      )}
+
+      {/* If puzzle is solved (via any puzzle), show "Go to Next Room" button */}
       {isPuzzleSolved && (
         <button
           className={nextRoomButtonClass}

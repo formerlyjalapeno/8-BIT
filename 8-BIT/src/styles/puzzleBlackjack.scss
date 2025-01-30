@@ -226,6 +226,7 @@
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
+      z-index: 999;
       &__hit,
       &__stand,
       &__doubledown,
@@ -259,6 +260,21 @@
         cursor: pointer;
         &:hover {
           background-color: #e0a800;
+        }
+      }
+      &__next-room {
+        width: 435px;
+        bottom: 42.5vh;
+        right: 18.4vw;
+        position: absolute;
+        padding: 35px 15px;
+        font-size: 1rem;
+        border-radius: 5px;
+        background-color: #00ff4c;
+        color: #333;
+        cursor: pointer;
+        &:hover {
+          background-color: #00df43;
         }
       }
     }

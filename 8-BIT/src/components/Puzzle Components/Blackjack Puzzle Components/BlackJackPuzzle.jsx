@@ -20,13 +20,13 @@ function getCardImage(card) {
   const suitShort = suitMap[card.suit] || "X";
 
   // e.g. "/cards/2H.png", "/cards/KD.png", etc.
-  // return `/cards/${valueShort}${suitShort}.png`;
-  return `../../../../public/backcard.png`; // Temporarily always shows backcard
+  return `/cards/${valueShort}${suitShort}.png`;
+  // return `../../../../public/backcard.png`; // Temporarily always shows backcard
 }
 
 const BlackjackGame = ({ onWin }) => {
   // ─────────────────────────────────────────────────────────────────────────────
-  //  State
+  //  1) STATE INITIALIZATION
   // ─────────────────────────────────────────────────────────────────────────────
   const [playerHands, setPlayerHands] = useState([{ cards: [], bet: 0 }]);
   const [dealerHand, setDealerHand] = useState([]);
@@ -38,10 +38,69 @@ const BlackjackGame = ({ onWin }) => {
   const [lastBet, setLastBet] = useState(0);
   const [history, setHistory] = useState([]);
 
-  const winningChips = 100;
+  const winningChips = 150;
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Win Condition
+  //  2) LOAD from localStorage on mount
+  // ─────────────────────────────────────────────────────────────────────────────
+  useEffect(() => {
+    try {
+      const storedData = localStorage.getItem("blackjackGameData");
+      if (storedData) {
+        const parsed = JSON.parse(storedData);
+        if (parsed) {
+          // Restore each piece if it exists
+          if (parsed.playerHands) setPlayerHands(parsed.playerHands);
+          if (parsed.dealerHand) setDealerHand(parsed.dealerHand);
+          if (parsed.deck) setDeck(parsed.deck);
+          if (parsed.gameState) setGameState(parsed.gameState);
+          if (typeof parsed.chips === "number") setChips(parsed.chips);
+          if (typeof parsed.currentHandIndex === "number")
+            setCurrentHandIndex(parsed.currentHandIndex);
+          if (typeof parsed.bet === "number") setBet(parsed.bet);
+          if (typeof parsed.lastBet === "number") setLastBet(parsed.lastBet);
+          if (Array.isArray(parsed.history)) setHistory(parsed.history);
+        }
+      }
+    } catch (error) {
+      console.error("Error loading blackjack game data:", error);
+    }
+  }, []);
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  //  3) SAVE to localStorage whenever relevant states change
+  // ─────────────────────────────────────────────────────────────────────────────
+  useEffect(() => {
+    try {
+      const saveData = {
+        playerHands,
+        dealerHand,
+        deck,
+        gameState,
+        chips,
+        currentHandIndex,
+        bet,
+        lastBet,
+        history,
+      };
+      localStorage.setItem("blackjackGameData", JSON.stringify(saveData));
+    } catch (error) {
+      console.error("Error saving blackjack game data:", error);
+    }
+  }, [
+    playerHands,
+    dealerHand,
+    deck,
+    gameState,
+    chips,
+    currentHandIndex,
+    bet,
+    lastBet,
+    history,
+  ]);
+
+  // ─────────────────────────────────────────────────────────────────────────────
+  //  4) WIN CONDITION
   // ─────────────────────────────────────────────────────────────────────────────
   useEffect(() => {
     if (chips >= winningChips) {
@@ -50,7 +109,7 @@ const BlackjackGame = ({ onWin }) => {
   }, [chips, winningChips, onWin]);
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Calculation Helpers
+  //  5) HELPER FUNCTIONS: calculateHandValue, canSplit
   // ─────────────────────────────────────────────────────────────────────────────
   function calculateHandValue(hand) {
     let total = 0;
@@ -78,7 +137,7 @@ const BlackjackGame = ({ onWin }) => {
   };
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  History
+  //  6) HISTORY UPDATER
   // ─────────────────────────────────────────────────────────────────────────────
   const updateHistory = (result, amount) => {
     setHistory((prevHistory) => [
@@ -93,10 +152,9 @@ const BlackjackGame = ({ onWin }) => {
   };
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Deal Initial Hands
+  //  7) DEAL INITIAL HANDS
   // ─────────────────────────────────────────────────────────────────────────────
   const dealInitialHands = () => {
-    // Validate bet
     if (bet <= 0) {
       alert("You must place a valid bet first.");
       return;
@@ -106,7 +164,6 @@ const BlackjackGame = ({ onWin }) => {
       return;
     }
 
-    // Draw cards
     const newDeck = [...deck];
     const playerStart = [newDeck.pop(), newDeck.pop()];
     const dealerStart = [newDeck.pop(), newDeck.pop()];
@@ -120,7 +177,6 @@ const BlackjackGame = ({ onWin }) => {
     // Subtract bet from chips
     setChips((prev) => prev - bet);
 
-    // Check immediate blackjack
     const playerTotal = calculateHandValue(playerStart);
     const dealerTotal = calculateHandValue(dealerStart);
     if (!checkForBlackjack(playerTotal, dealerTotal)) {
@@ -129,7 +185,7 @@ const BlackjackGame = ({ onWin }) => {
   };
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Check for Blackjack
+  //  8) CHECK FOR BLACKJACK
   // ─────────────────────────────────────────────────────────────────────────────
   const checkForBlackjack = (playerTotal, dealerTotal) => {
     if (playerTotal === 21 || dealerTotal === 21) {
@@ -153,7 +209,7 @@ const BlackjackGame = ({ onWin }) => {
   };
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Start a New Round (keeping deck & chips)
+  //  9) START NEW ROUND
   // ─────────────────────────────────────────────────────────────────────────────
   const startNewRound = () => {
     setPlayerHands([{ cards: [], bet: 0 }]);
@@ -165,7 +221,7 @@ const BlackjackGame = ({ onWin }) => {
   };
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Player Actions
+  // 10) PLAYER ACTIONS
   // ─────────────────────────────────────────────────────────────────────────────
   const playerHit = () => {
     if (gameState !== "playing") return;
@@ -186,7 +242,6 @@ const BlackjackGame = ({ onWin }) => {
       updatedHands[currentHandIndex].cards
     );
     if (playerTotal > 21) {
-      // Busted
       endTurn();
     }
   };
@@ -198,11 +253,6 @@ const BlackjackGame = ({ onWin }) => {
       playDealerTurn();
     }
   };
-
-  // OLD: only rendered if 2 cards
-  // {playerHands[currentHandIndex].cards.length === 2 && (
-  //   <button onClick={doubleDown}>Double Down</button>
-  // )}
 
   const doubleDown = () => {
     const currentHand = playerHands[currentHandIndex];
@@ -238,7 +288,7 @@ const BlackjackGame = ({ onWin }) => {
   };
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Dealer Actions
+  // 11) DEALER ACTIONS
   // ─────────────────────────────────────────────────────────────────────────────
   const playDealerTurn = () => {
     let dealerTotal = calculateHandValue(dealerHand);
@@ -254,13 +304,12 @@ const BlackjackGame = ({ onWin }) => {
     setDeck(newDeck);
     setDealerHand(newDealerHand);
 
-    // Auto payouts
     handlePayouts(newDealerHand);
     setGameState("result");
   };
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Payouts
+  // 12) PAYOUTS
   // ─────────────────────────────────────────────────────────────────────────────
   const handlePayouts = (finalDealerHand) => {
     const dealerTotal = calculateHandValue(finalDealerHand);
@@ -286,10 +335,8 @@ const BlackjackGame = ({ onWin }) => {
   };
 
   // ─────────────────────────────────────────────────────────────────────────────
-  //  Rendering / Layout
+  // 13) RENDERING / LAYOUT
   // ─────────────────────────────────────────────────────────────────────────────
-
-  // Only show bet container if we're in "betting" state
   const betContainerClass = `puzzle-blackjack__betting-container ${
     gameState !== "betting"
       ? "puzzle-blackjack__betting-container--disabled"
@@ -340,7 +387,7 @@ const BlackjackGame = ({ onWin }) => {
             </button>
           </div>
 
-          {/* ────────── DEALER SECTION ────────── */}
+          {/* DEALER SECTION */}
           {gameState !== "betting" && (
             <div className="puzzle-blackjack__game__dealer">
               <h3>Dealer's Hand</h3>
@@ -379,7 +426,7 @@ const BlackjackGame = ({ onWin }) => {
             </div>
           )}
 
-          {/* ────────── RESULT ────────── */}
+          {/* RESULT */}
           {gameState === "result" && (
             <div className="puzzle-blackjack__result">
               <div className="puzzle-blackjack__game__player-hands">
@@ -406,7 +453,62 @@ const BlackjackGame = ({ onWin }) => {
             </div>
           )}
 
-          {/* ────────── PLAYING (PLAYER ACTIONS) ────────── */}
+          {/* Action Buttons only appear if gameState === "playing" or "result" */}
+          {["playing", "result"].includes(gameState) && (
+            <div className="puzzle-blackjack__game__actions">
+              <button
+                className="puzzle-blackjack__game__actions__hit"
+                onClick={playerHit}
+                disabled={gameState !== "playing"}
+              >
+                Hit
+              </button>
+              <button
+                className="puzzle-blackjack__game__actions__stand"
+                onClick={endTurn}
+                disabled={gameState !== "playing"}
+              >
+                Stand
+              </button>
+
+              {/* Always visible, disabled if can't split or not playing */}
+              <button
+                className="puzzle-blackjack__game__actions__split"
+                onClick={splitHand}
+                disabled={
+                  gameState !== "playing" ||
+                  !canSplit(playerHands[currentHandIndex])
+                }
+              >
+                Split
+              </button>
+
+              {/* Always visible, disabled if not valid or not playing */}
+              <button
+                className="puzzle-blackjack__game__actions__doubledown"
+                onClick={doubleDown}
+                disabled={
+                  gameState !== "playing" ||
+                  playerHands[currentHandIndex].cards.length !== 2 ||
+                  chips < playerHands[currentHandIndex].bet
+                }
+              >
+                Double Down
+              </button>
+
+              {/* New Round always visible if in the "playing"/"result" block
+                  but only clickable if gameState === "result" */}
+              <button
+                className="puzzle-blackjack__game__actions__newround"
+                onClick={startNewRound}
+                disabled={gameState !== "result"}
+              >
+                New Round
+              </button>
+            </div>
+          )}
+
+          {/* PLAYING: Show player's hands only if playing */}
           {gameState === "playing" && (
             <div className="puzzle-blackjack__game">
               <div className="puzzle-blackjack__game__player-hands">
@@ -434,50 +536,6 @@ const BlackjackGame = ({ onWin }) => {
                     <p>Bet: {hand.bet}</p>
                   </div>
                 ))}
-              </div>
-
-              <div className="puzzle-blackjack__game__actions">
-                <button
-                  className="puzzle-blackjack__game__actions__hit"
-                  onClick={playerHit}
-                >
-                  Hit
-                </button>
-                <button
-                  className="puzzle-blackjack__game__actions__stand"
-                  onClick={endTurn}
-                >
-                  Stand
-                </button>
-
-                {/* Always show Split, disabled if can't split */}
-                <button
-                  className="puzzle-blackjack__game__actions__split"
-                  onClick={splitHand}
-                  disabled={!canSplit(playerHands[currentHandIndex])}
-                >
-                  Split
-                </button>
-
-                {/* Always show Double Down, disabled if not valid */}
-                <button
-                  className="puzzle-blackjack__game__actions__doubledown"
-                  onClick={doubleDown}
-                  disabled={
-                    playerHands[currentHandIndex].cards.length !== 2 ||
-                    chips < playerHands[currentHandIndex].bet
-                  }
-                >
-                  Double Down
-                </button>
-                {/* NEW ROUND BUTTON -> always rendered in this block, disabled if not result */}
-                <button
-                  className="puzzle-blackjack__game__actions__newround" 
-                  onClick={startNewRound}
-                  disabled={gameState !== "result"}
-                >
-                  New Round
-                </button>
               </div>
             </div>
           )}
