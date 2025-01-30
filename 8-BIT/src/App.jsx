@@ -5,6 +5,7 @@ import MainMenu from "./pages/MainMenu";
 import Redirect from "./pages/Redirect";
 import Credits from "./pages/Credits";
 import Room from "./pages/Room";
+import Epilogue from "./pages/Epilogue";
 
 function App() {
   const getTime = () => {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/loading" element={<Redirect />} />
           <Route path="/credits" element={<Credits />} />
           <Route path="/room" element={<Room />} />
+          <Route path="/epilogue" element={<Epilogue/>} />
           <Route path="/" element="" />
         </Routes>
       </BrowserRouter>
