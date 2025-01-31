@@ -119,3 +119,25 @@
     }
   }
 }
+
+.game-completed {
+  position: absolute;
+  left: 40vw;
+  top: 30vh;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #4caf50; // Green success color
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: inline-block;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import Error from "../components/Additional Components/Error";
-import { saveGameStarted, loadGameStarted } from "../utils/storage.js";
+import { saveGameStarted, loadGameStarted, loadGameCompletion } from "../utils/storage.js";
 
 const Welcome = () => {
   const elementRef = useRef(null);
@@ -33,8 +33,19 @@ const Welcome = () => {
       console.log("deactivate");
     }
   };
+  
+  const [gameCompleted, setGameCompleted] = useState(false);
+
+  useEffect(() => {
+    // Check if the player has finished the game
+    setGameCompleted(loadGameCompletion());
+  }, []);
 
   return (
+    <>
+    {gameCompleted && (
+      <p className="game-completed">GAME COMPLETED ✅</p>
+    )}
     <main className="mainmenu">
       <article className="mainmenu__message">
         <div className="mainmenu__message__single-text">
@@ -80,7 +91,8 @@ const Welcome = () => {
         </Link>
       </div>
       <Error onClick={DeactivateErrorOverlay} ref={elementRef} />
-    </main>
+      </main>
+    </>
   );
 };
 

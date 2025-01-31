@@ -1,4 +1,6 @@
 // src/puzzles/binary/BinaryPuzzle.jsx
+
+import React from "react";
 import Items from "../../Main Room Components/scripts/items";
 import Questions from "../../Main Room Components/scripts/questions";
 import QuestionOverlay from "../../Main Room Components/QuestionOverlay";
@@ -6,7 +8,7 @@ import ItemOverlay from "../../Main Room Components/ItemOverlay";
 import Inventory from "../../Inventory Components/Inventory";
 
 /**
- * PROPS we expect from Room.jsx:
+ * PROPS expected from Room.jsx:
  *  - roomItemIds, setRoomItemIds
  *  - roomQuestionIds, setRoomQuestionIds
  *  - isPuzzleSolved, setIsPuzzleSolved
@@ -18,7 +20,8 @@ import Inventory from "../../Inventory Components/Inventory";
  *  - collectItem(id)        // logic to pick up an item
  *  - closeQuestion()        // logic to close question
  *  - onInspectItem(id)      // logic to inspect item
- *  - closeItemOverlay()     // logic to close item overlay
+ *  *  - closeItemOverlay()     // logic to close item overlay
+ *  - Hover1Enter, Hover1Leave, ... // hover event handlers
  */
 export default function BinaryPuzzle(props) {
   const {
@@ -53,8 +56,8 @@ export default function BinaryPuzzle(props) {
     Hover4Leave,
   } = props;
 
-  // If puzzle is solved, we won't show question buttons;
-  // but you can decide how you want to handle it.
+  // Find the active question object based on activeQuestion ID
+  const currentQuestion = Questions.find((q) => q.id === activeQuestion);
 
   return (
     <div className="binary-puzzle">
@@ -73,20 +76,20 @@ export default function BinaryPuzzle(props) {
         );
       })}
 
-      {/* QUESTION BUTTONS (only if puzzle not solved) */}
+      {/* QUESTION BUTTONS (only if puzzle not solved and no active question) */}
       {!isPuzzleSolved &&
         roomQuestionIds.map((questionId) => {
           const q = Questions.find((qq) => qq.id === questionId);
-          q.enter = Hover4Enter;
-          q.leave = Hover4Leave;
+          // Avoid displaying buttons for already active questions
+          if (q.id === activeQuestion) return null;
           return (
             <button
               className={q.class}
               key={q.id}
               onClick={() => setActiveQuestion(q.id)}
               aria-label={`Open ${q.title}`}
-              onMouseEnter={q.enter}
-              onMouseLeave={q.leave}
+              onMouseEnter={Hover4Enter}
+              onMouseLeave={Hover4Leave}
             >
               Open {q.title}
             </button>
@@ -94,19 +97,22 @@ export default function BinaryPuzzle(props) {
         })}
 
       {/* QUESTION OVERLAY & ITEM OVERLAY */}
-      <QuestionOverlay
-        activeQuestion={activeQuestion}
-        onClose={closeQuestion}
-        questions={Questions}
-        onPuzzleSolved={() => {
-          // Mark puzzle as solved in Room state
-          setIsPuzzleSolved(true);
-          // Also call parent's callback
-          onPuzzleCompletion();
-        }}
-      />
+      {currentQuestion && (
+        <QuestionOverlay
+          activeQuestion={activeQuestion}
+          onClose={closeQuestion}
+          questions={Questions}
+          onPuzzleSolved={() => {
+            // Mark puzzle as solved in Room state
+            setIsPuzzleSolved(true);
+            // Also call parent's callback
+            onPuzzleCompletion();
+          }}
+        />
+      )}
       <ItemOverlay activeItemId={activeItemId} onClose={closeItemOverlay} />
 
+      {/* Hover Frames */}
       <div
         className="room__container__hover__1"
         onMouseEnter={Hover1Enter}

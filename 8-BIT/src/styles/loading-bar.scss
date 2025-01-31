@@ -1,36 +1,87 @@
-// LOADING BAR
-.loading-bar {
-  transform: scale(3);
-  transform-origin: middle left;
-  image-rendering: pixelated;
+@keyframes glitch {
+  0% { transform: translate(0, 0) skew(2deg, -2deg); }
+  10% { transform: translate(-4px, 2px) skew(-4deg, 4deg); }
+  20% { transform: translate(4px, -2px) skew(3deg, -3deg); }
+  30% { transform: translate(-3px, 2px) skew(-2deg, 2deg); }
+  40% { transform: translate(3px, -2px) skew(4deg, -4deg); }
+  50% { transform: translate(0, 0) skew(-2deg, 2deg); }
+  60% { transform: translate(-2px, -1px) skew(2deg, -2deg); }
+  70% { transform: translate(2px, 1px) skew(-3deg, 3deg); }
+  80% { transform: translate(-1px, 3px) skew(3deg, -3deg); }
+  90% { transform: translate(1px, -3px) skew(-2deg, 2deg); }
+  100% { transform: translate(0, 0) skew(0deg, 0deg); }
+}
+
+@keyframes glitch-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+@keyframes bar-glitch {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(1px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes static-flicker {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.6; }
+}
+
+.loading-screen {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: black;
   text-align: center;
+  overflow: hidden;
+  position: relative;
+}
 
-  &__primary-container {
-    &__text {
-      font-size: $font-size-xxs; // Small font, becomes large when scaled
-      font-family: $font-pixel-condensed;
-    }
+.loading-text {
+  display: flex;
+  flex-direction: column; // Forces text to stack vertically
+  align-items: center; // Centers the text
+  justify-content: center;
+  text-align: center;
+  color: linear-gradient(to right, #0055ff, #aa00ff); // Blurple gradient
+  margin-bottom: 15px;
 
-    &__extra {
-      font-size: $font-size-xxxs;
-      font-family: $font-pixel-condensed;
-    }
+  &__main {
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    animation: static-flicker 6s infinite;
+    color: linear-gradient(to right, #0055ff, #aa00ff); // Blurple gradient
+    letter-spacing: 1px;
   }
 
-  &__secondary-container {
-    &__progress {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      height: 0.6rem;
-      margin-top: 5px;
-      width: 0%;
-      background: linear-gradient(
-        to right,
-        $color-gradient-start,
-        $color-gradient-end
-      );
-      transition: width 0.1s steps(1);
-    }
+  &__sub {
+    font-size: 1rem;
+    color: #aaa;
+    text-transform: lowercase;
+    animation: glitch-flicker 2s infinite;
+    margin-top: 5px;
+  }
+}
+
+.loading-bar {
+  width: 320px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid white;
+  overflow: hidden;
+  position: relative;
+  margin-top: 10px;
+  animation: glitch-flicker 1.5s infinite alternate; // Makes the bar slightly flicker
+
+  &__fill {
+    height: 100%;
+    background: linear-gradient(to right, #0055ff, #aa00ff); // Blurple gradient
+    transition: width 0.2s ease-in-out;
+    animation: bar-glitch 0.2s infinite alternate;
   }
 }
