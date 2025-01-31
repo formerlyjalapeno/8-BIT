@@ -2,7 +2,7 @@
 
 /**
  * STORAGE UTILITIES
- * 
+ *
  * This file handles saving and loading game data using `localStorage`.
  * It stores:
  * - Room state (items, questions, puzzle progress)
@@ -14,14 +14,15 @@
 
 /**
  * Saves the state of a specific room to localStorage.
- * 
+ *
  * @param {number} roomId - The ID of the room to save.
  * @param {object} roomState - The state object of the room (items, questions, puzzle completion).
  */
 export function saveRoomState(roomId, roomState) {
   try {
     // Retrieve all saved room states or create an empty object if none exist
-    const existingRoomsState = JSON.parse(localStorage.getItem("roomsState")) || {};
+    const existingRoomsState =
+      JSON.parse(localStorage.getItem("roomsState")) || {};
 
     // Update the specific room's state
     existingRoomsState[roomId] = roomState;
@@ -35,7 +36,7 @@ export function saveRoomState(roomId, roomState) {
 
 /**
  * Loads the state of a specific room from localStorage.
- * 
+ *
  * @param {number} roomId - The ID of the room to load.
  * @returns {object|null} - The state object of the room or null if no data exists.
  */
@@ -56,7 +57,7 @@ export function loadRoomState(roomId) {
 
 /**
  * Saves the player's inventory to localStorage.
- * 
+ *
  * @param {array} inventory - An array containing the player's collected items.
  */
 export function savePlayerInventory(inventory) {
@@ -70,7 +71,7 @@ export function savePlayerInventory(inventory) {
 
 /**
  * Loads the player's inventory from localStorage.
- * 
+ *
  * @returns {array} - An array of collected items, or an empty array if no inventory is found.
  */
 export function loadPlayerInventory() {
@@ -90,7 +91,7 @@ export function loadPlayerInventory() {
 
 /**
  * Saves the game's start status to localStorage.
- * 
+ *
  * @param {boolean} isStarted - Indicates whether the game has started.
  */
 export function saveGameStarted(isStarted) {
@@ -104,7 +105,7 @@ export function saveGameStarted(isStarted) {
 
 /**
  * Loads the game's start status from localStorage.
- * 
+ *
  * @returns {boolean} - Returns true if the game has started, otherwise false.
  */
 export function loadGameStarted() {
@@ -122,7 +123,7 @@ export function loadGameStarted() {
 
 /**
  * Clears all relevant game data from localStorage for a complete game reset.
- * 
+ *
  * This includes room states, player inventory, game start status, selected questions,
  * and any room-specific selections.
  */
@@ -136,21 +137,23 @@ export function clearAllGameData() {
 
 /**
  * Saves a game completion flag as a cookie.
- * 
+ *
  * This allows the game to recognize if the player has finished,
  * even after restarting the browser.
  */
 export function saveGameCompletion() {
-  document.cookie = "gameCompleted=true; path=/; max-age=31536000"; // 1-year expiration
+  document.cookie = "gameCompleted=true; path=/; max-age=604800"; // 1-week expiration
 }
 
 /**
  * Checks if the player has completed the game.
- * 
+ *
  * @returns {boolean} - True if the game was completed, false otherwise.
  */
 export function loadGameCompletion() {
-  return document.cookie.split("; ").some((cookie) => cookie.startsWith("gameCompleted=true"));
+  return document.cookie
+    .split("; ")
+    .some((cookie) => cookie.startsWith("gameCompleted=true"));
 }
 
 /**

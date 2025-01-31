@@ -239,7 +239,6 @@ const TicTacToe = () => {
 
   return (
     <div className="tic-tac-toe">
-      <h2 className="tic-tac-toe__title">Lose-Lose-Lose</h2>
       
       {/* Display multiple "Lose" texts with decreasing font sizes based on loseCount */}
       <div className="lose-words" style={{ marginTop: '10px' }}>

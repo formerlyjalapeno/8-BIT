@@ -80,15 +80,15 @@
     }
   
     &__exit-button {
-      margin-top: 20px;
+      margin-top: 40px;
       padding: 10px 20px;
-      font-size: 1.2rem;
+      font-size: .9rem;
       border: none;
       background: red;
       color: white;
       cursor: pointer;
       transition: background 0.2s;
-  
+      font-family: $font-pixel;
       &:hover {
         background: darkred;
       }

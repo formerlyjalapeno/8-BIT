@@ -23,11 +23,13 @@ const Epilogue = () => {
     // Fake loading bar progression
     const loadingInterval = setInterval(() => {
       setLoadingProgress((prev) => {
-        if (prev >= 98) {
+        if (prev >= 96) {
           clearInterval(loadingInterval);
           setPhase("SYSTEM ERROR...");
           setTimeout(() => {
-            setGlitchText(glitchMessages[Math.floor(Math.random() * glitchMessages.length)]);
+            setGlitchText(
+              glitchMessages[Math.floor(Math.random() * glitchMessages.length)]
+            );
           }, 500);
           setTimeout(() => {
             setGlitchText("...");
@@ -58,7 +60,10 @@ const Epilogue = () => {
           <div className="epilogue-screen__loading">
             <p>{phase}</p>
             <div className="progress-bar">
-              <div className="progress-bar__fill" style={{ width: `${loadingProgress}%` }}></div>
+              <div
+                className="progress-bar__fill"
+                style={{ width: `${loadingProgress}%` }}
+              ></div>
             </div>
             <p>{loadingProgress}%</p>
           </div>
@@ -66,9 +71,13 @@ const Epilogue = () => {
       ) : (
         <div className="epilogue-screen__credits">
           <h2>THANK YOU FOR PLAYING</h2>
-          <p>A Game By:</p>
-          <p><strong>Your Name</strong> & <strong>Your Friend’s Name</strong></p>
-          <button className="epilogue-screen__exit-button" onClick={handleExit}>EXIT</button>
+          <p>An 8-bit "Escape Room" By:</p>
+          <p>
+            <strong>NOVA</strong> & <strong>@SOVZ</strong>
+          </p>
+          <button className="epilogue-screen__exit-button" onClick={handleExit}>
+            See you later
+          </button>
         </div>
       )}
     </div>

@@ -35,6 +35,10 @@ const DevResetButton = () => {
       borderRadius: "0.25rem",
       cursor: "pointer",
       zIndex: 9999, // So it stays on top of other elements
+      // comment the 3 below to make visible
+      background: "none",
+      border: "none",
+      color: "transparent",
     }}>
       Dev Reset
     </button>

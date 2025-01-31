@@ -31,14 +31,14 @@ const BlackjackGame = ({ onWin }) => {
   const [dealerHand, setDealerHand] = useState([]);
   const [deck, setDeck] = useState(generateDeck());
   const [gameState, setGameState] = useState("betting");
-  const [chips, setChips] = useState(50);
+  const [chips, setChips] = useState(500);
   const [currentHandIndex, setCurrentHandIndex] = useState(0);
   const [bet, setBet] = useState(0);
   const [lastBet, setLastBet] = useState(0);
   const [history, setHistory] = useState([]);
 
-  const winningChips = 0;
-
+  const winningChips = 1500;
+  
   // ─────────────────────────────────────────────────────────────────────────────
   //  2) LOAD from localStorage on mount
   // ─────────────────────────────────────────────────────────────────────────────
